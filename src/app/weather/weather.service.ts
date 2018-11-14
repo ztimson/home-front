@@ -32,7 +32,7 @@ export class WeatherService {
             httpClient.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city},${this.countryCode}&APPID=${this.apiKey}&units=metric`).toPromise().then((weather: any) => {
                 this.cloudCover = weather.clouds.all;
                 this.humidity = weather.main.humidity;
-                this.icon = this.weatherCodes[weather.weather[0].id].icon;
+                this.icon = `wi-${this.weatherCodes[weather.weather[0].id].icon}`;
                 this.pressure = weather.main.pressure;
                 this.sunrise = new Date(weather.sys.sunrise);
                 this.sunset = new Date(weather.sys.sunset);
@@ -49,7 +49,7 @@ export class WeatherService {
                 temp.splice(0, temp.length - 5);
                 this.forecast = temp.map(weather => ({
                     day: this.days[new Date(weather.dt_txt).getDay()],
-                    icon: this.weatherCodes[weather.weather[0].id].icon,
+                    icon: `wi-${this.weatherCodes[weather.weather[0].id].icon}`,
                     temp: Math.round(weather.main.temp)
                 }));
             });
