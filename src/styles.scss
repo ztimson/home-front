@@ -3,6 +3,22 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css');
 
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: #555;
+}
+
+
 html, body {
     padding: 0;
     margin: 0;
