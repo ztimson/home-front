@@ -28,6 +28,7 @@ export class WeatherService {
 
     constructor(httpClient: HttpClient) {
         timer(0, 5 * 60000).subscribe(async () => {
+            // Current weather information
             httpClient.get(`https://api.openweathermap.org/data/2.5/weather?q=${this.city},${this.countryCode}&APPID=${this.apiKey}&units=metric`).toPromise().then((weather: any) => {
                 this.cloudCover = weather.clouds.all;
                 this.humidity = weather.main.humidity;
@@ -41,6 +42,8 @@ export class WeatherService {
                 this.weather = weather.weather[0].description;
                 this.wind = [weather.wind.deg, Math.round(weather.wind.speed)];
             });
+
+            // 5 day forecast
             httpClient.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.city},${this.countryCode}&APPID=${this.apiKey}&units=metric`).toPromise().then((weather: any) => {
                 let temp = weather.list.filter(weather => weather.dt_txt.indexOf('12:00:00') != -1);
                 temp.splice(0, temp.length - 5);
@@ -49,7 +52,6 @@ export class WeatherService {
                     icon: this.weatherCodes[weather.weather[0].id].icon,
                     temp: Math.round(weather.main.temp)
                 }));
-                console.log(this.forecast[3])
             });
         });
     }
