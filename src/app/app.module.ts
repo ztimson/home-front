@@ -23,7 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import {environment} from '../environments/environment';
 import * as firebase from 'firebase/app';
-import {LoginGuard} from './login/login.guard';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
 
@@ -52,8 +52,9 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     ],
-    providers: [LoginGuard],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {

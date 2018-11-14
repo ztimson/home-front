@@ -2,7 +2,9 @@ import {CanActivate, Router} from '@angular/router';
 import {firebaseApp} from '../app.module';
 import {Injectable} from '@angular/core';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class LoginGuard implements CanActivate {
 
     constructor(private router: Router) {}
