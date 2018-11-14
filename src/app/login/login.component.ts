@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         firebaseApp.auth().onAuthStateChanged(user => {
-            if(!!user) let ignore = this.ngZone.run(() => this.router.navigate(['/dashboard']));
+            if(!!user) this.ngZone.run(() => this.router.navigate(['/dashboard']));
         })
     }
 
