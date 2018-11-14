@@ -10,6 +10,7 @@ html, body {
     width: 100%;
 
     font-family: 'Archivo', sans-serif;
+    background-color: #2F323A;
 }
 
 .mat-list-item {
@@ -55,4 +56,12 @@ html, body {
     align-items: center;
     justify-content: center;
     vertical-align: middle;
+}
+
+.mat-stroked-button {
+    border-color: #ffffff !important;
+}
+
+.mat-form-field label {
+    color: #ffffff !important;
 }

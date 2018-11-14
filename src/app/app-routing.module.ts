@@ -5,13 +5,16 @@ import {WeatherComponent} from './weather/weather.component';
 import {SecurityComponent} from './security/security.component';
 import {SettingsComponent} from './settings/settings.component';
 import {BatteryComponent} from './battery/battery.component';
+import {LoginComponent} from './login/login.component';
+import {LoginGuard} from './login/login.guard';
 
 const routes: Routes = [
-    {path: 'dashboard', component: DashboardComponent},
-    {path: 'battery', component: BatteryComponent},
-    {path: 'weather', component: WeatherComponent},
-    {path: 'security', component: SecurityComponent},
-    {path: 'settings', component: SettingsComponent},
+    {path: 'battery', component: BatteryComponent, canActivate: [LoginGuard]},
+    {path: 'dashboard', component: DashboardComponent, canActivate: [LoginGuard]},
+    {path: 'login', component: LoginComponent, data: {hide: true}},
+    {path: 'security', component: SecurityComponent, canActivate: [LoginGuard]},
+    {path: 'settings', component: SettingsComponent, canActivate: [LoginGuard]},
+    {path: 'weather', component: WeatherComponent, canActivate: [LoginGuard]},
     {path: '**', redirectTo: '/dashboard'}
 ];
 

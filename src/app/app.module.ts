@@ -6,9 +6,10 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {
+    MatButtonModule,
     MatCardModule,
-    MatDividerModule,
-    MatIconModule,
+    MatDividerModule, MatFormFieldModule,
+    MatIconModule, MatInputModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule
@@ -19,6 +20,12 @@ import { WeatherComponent } from './weather/weather.component';
 import { SecurityComponent } from './security/security.component';
 import { SettingsComponent } from './settings/settings.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import {environment} from '../environments/environment';
+import * as firebase from 'firebase';
+import {LoginGuard} from './login/login.guard';
+
+export const firebaseApp = firebase.initializeApp(environment.firebase);
 
 @NgModule({
     declarations: [
@@ -27,7 +34,8 @@ import {HttpClientModule} from '@angular/common/http';
         BatteryComponent,
         WeatherComponent,
         SecurityComponent,
-        SettingsComponent
+        SettingsComponent,
+        LoginComponent
     ],
     imports: [
         AppRoutingModule,
@@ -35,14 +43,17 @@ import {HttpClientModule} from '@angular/common/http';
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
+        MatButtonModule,
         MatCardModule,
         MatDividerModule,
+        MatFormFieldModule,
         MatIconModule,
+        MatInputModule,
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
     ],
-    providers: [],
+    providers: [LoginGuard],
     bootstrap: [AppComponent]
 })
 export class AppModule {

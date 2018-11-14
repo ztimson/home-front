@@ -1,4 +1,4 @@
-<mat-toolbar class="bg-primary">
+<mat-toolbar *ngIf="!hide" [@expandDown]="!hide" class="bg-primary">
     <mat-icon *ngIf="mobile" class="mr-2" (click)="open = !open">menu</mat-icon>
     <img src="assets/icon.png" class="mr-2" height="24px" width="auto">
     <span style="font-weight: 500;">Home Front</span>

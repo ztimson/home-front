@@ -6,6 +6,13 @@ import {
     query, group
 } from '@angular/animations';
 
+export const expandDown = trigger('expandDown', [
+    transition('void => *', [
+        style({transform: 'translateY(-100%)'}),
+        animate('0.5s ease-in-out', style({transform: 'translateY(0%)'}))
+    ])
+]);
+
 export const routerTransition = trigger('routerTransition', [
     transition('* <=> *', [
         /* order */
@@ -22,4 +29,4 @@ export const routerTransition = trigger('routerTransition', [
             ], { optional: true }),
         ])
     ])
-])
+]);
