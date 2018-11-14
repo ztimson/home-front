@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {environment} from '../../environments/environment';
 import {firebaseApp} from '../app.module';
 import {Router} from '@angular/router';
@@ -11,9 +11,13 @@ import * as firebase from 'firebase';
 export class LoginComponent implements OnInit {
     environment = environment;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private ngZone: NgZone) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        firebaseApp.auth().onAuthStateChanged(user => {
+            if(!!user) let ignore = this.ngZone.run(() => this.router.navigate(['/dashboard']));
+        })
+    }
 
     async login() {
         await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
