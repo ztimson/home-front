@@ -22,7 +22,7 @@ import { SettingsComponent } from './settings/settings.component';
 import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import {environment} from '../environments/environment';
-import * as firebase from 'firebase';
+import * as firebase from 'firebase/app';
 import {LoginGuard} from './login/login.guard';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
