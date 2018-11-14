@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Archivo|Material+Icons');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css');
+
+html, body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+
+    font-family: 'Archivo', sans-serif;
+}
+
+.mat-list-item {
+    height: auto !important;
+    color: #9CA4B6 !important;
+
+    &.active {
+        background-color: #262930 !important;
+        color: #1CA8DD !important;
+    }
+}
+
+.mat-divider {
+    color: #9CA4B6 !important;
+}
+
+.bg-primary {
+    background-color: #f8f8f8 !important;
+}
+
+.bg-secondary {
+    background-color: #2F323A !important;
+}
+
+.scale-150 {
+    transform: scale(1.5);
+}
+
+.scale-200 {
+    transform: scale(2);
+}
+
+.scale-300 {
+    transform: scale(3);
+}
+
+.scale-500 {
+    transform: scale(5);
+}
+
+.material-icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
