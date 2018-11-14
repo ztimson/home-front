@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     async login() {
         await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-        await firebaseApp.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        await firebaseApp.auth().signInWithRedirect(new firebase.auth.GoogleAuthProvider());
         return this.router.navigate(['/dashboard']);
     }
 }
