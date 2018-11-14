@@ -20,12 +20,12 @@ export class AppComponent {
     constructor(public batteryService: BatteryService, router: Router, route: ActivatedRoute, breakpointObserver: BreakpointObserver) {
         router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
             this.hide = !!route.root.firstChild.snapshot.data.hide;
-            if(this.hide) this.open = false;
+            this.open = !this.hide && !this.mobile;
         });
 
         breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
             this.mobile = result.matches;
-            this.open = !this.hide && !this.mobile;
+            this.open = !this.mobile;
         })
     }
 }

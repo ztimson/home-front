@@ -1,27 +1,29 @@
-<div class="d-flex flex-column flex-md-row justify-content-center align-items-center" style="flex-grow: 1;">
-    <i [class]="'wi wi-fw wi-' + weatherService.icon" style="font-size: 6rem"></i>
-    <div class="ml-0 ml-md-3">
-        <h1 class="my-4 my-md-0 font-weight-bold text-center text-md-left">{{weatherService.temp}} °C</h1>
-        <h3 class="m-0">{{weatherService.weather}}</h3>
+<div>
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center" style="flex-grow: 1;">
+        <i [class]="'wi wi-fw wi-' + weatherService.icon" style="font-size: 6rem"></i>
+        <div class="ml-0 ml-md-3">
+            <h1 class="my-4 my-md-0 font-weight-bold text-center text-md-left">{{weatherService.temp}} °C</h1>
+            <h3 class="m-0">{{weatherService.weather}}</h3>
+        </div>
     </div>
+    <div class="my-4 d-flex mx-auto" style="max-width: 450px">
+        <div class="text-center" style="flex-grow: 1">
+            <i class="wi wi-fw wi-humidity"></i> {{weatherService.humidity}} %
+        </div>
+        <div class="text-center" style="flex-grow: 1">
+            <i class="wi wi-fw wi-cloud"></i> {{weatherService.cloudCover}} %
+        </div>
+        <div class="text-center" style="flex-grow: 1">
+            <i class="wi wi-fw wi-strong-wind"></i> {{weatherService.wind[1]}} KM/H
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="my-4 d-flex justify-content-center">
+        <div *ngFor="let w of weatherService.forecast" class="d-flex flex-column align-items-center" style="max-width: 75px; flex-grow: 1">
+            {{w.day}}
+            <i [class]="'my-2 wi wi-fw wi-' + w.icon" style="font-size: 2rem"></i>
+            {{w.temp}} °C
+        </div>
+    </div>
+    <mat-divider></mat-divider>
 </div>
-<div class="my-4 d-flex mx-auto" style="max-width: 450px">
-    <div class="text-center" style="flex-grow: 1">
-        <i class="wi wi-fw wi-humidity"></i> {{weatherService.humidity}} %
-    </div>
-    <div class="text-center" style="flex-grow: 1">
-        <i class="wi wi-fw wi-cloud"></i> {{weatherService.cloudCover}} %
-    </div>
-    <div class="text-center" style="flex-grow: 1">
-        <i class="wi wi-fw wi-strong-wind"></i> {{weatherService.wind[1]}} KM/H
-    </div>
-</div>
-<mat-divider></mat-divider>
-<div class="my-4 d-flex justify-content-center">
-    <div *ngFor="let w of weatherService.forecast" class="d-flex flex-column align-items-center" style="max-width: 75px; flex-grow: 1">
-        {{w.day}}
-        <i [class]="'my-2 wi wi-fw wi-' + w.icon" style="font-size: 2rem"></i>
-        {{w.temp}} °C
-    </div>
-</div>
-<mat-divider></mat-divider>
