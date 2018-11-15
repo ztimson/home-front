@@ -10,7 +10,7 @@ import {
     MatCardModule,
     MatDividerModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
-    MatListModule,
+    MatListModule, MatProgressBarModule,
     MatSidenavModule,
     MatToolbarModule
 } from '@angular/material';
@@ -50,6 +50,7 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         MatIconModule,
         MatInputModule,
         MatListModule,
+        MatProgressBarModule,
         MatSidenavModule,
         MatToolbarModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),

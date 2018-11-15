@@ -11,7 +11,7 @@ import {LoginGuard} from './login/login.guard';
 const routes: Routes = [
     {path: 'battery', component: BatteryComponent, canActivate: [LoginGuard]},
     {path: 'dashboard', component: DashboardComponent, canActivate: [LoginGuard]},
-    {path: 'login', component: LoginComponent, data: {hide: true}},
+    {path: 'login', component: LoginComponent, data: {hide: true, noAnimation: true}},
     {path: 'security', component: SecurityComponent, canActivate: [LoginGuard]},
     {path: 'settings', component: SettingsComponent, canActivate: [LoginGuard]},
     {path: 'weather', component: WeatherComponent, canActivate: [LoginGuard]},

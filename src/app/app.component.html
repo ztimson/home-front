@@ -20,10 +20,12 @@
             <mat-divider></mat-divider>
             <a mat-list-item routerLink="settings" routerLinkActive="active"><span class="p-3 pl-0 mr-5"><mat-icon class="mr-2">settings</mat-icon> Settings</span></a>
             <mat-divider></mat-divider>
+            <a mat-list-item (click)="logout()"><span class="p-3 pl-0 mr-5" style="color: darkred"><mat-icon class="mr-2">logout</mat-icon> Logout</span></a>
+            <mat-divider></mat-divider>
         </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-content class="bg-secondary text-white p-4" (click)="open = (mobile && open) ? false : open">
-        <main [@routerTransition]="o.isActivated ? o.activatedRoute : ''">
+    <mat-drawer-content class="bg-secondary text-white" [ngClass]="{'p-4': !hide}" (click)="open = (mobile && open) ? false : open" style="position: relative">
+        <main class="d-flex flex-column justify-content-center h-100" [@routerTransition]="getState(o)">
             <router-outlet #o="outlet"></router-outlet>
         </main>
     </mat-drawer-content>

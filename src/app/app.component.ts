@@ -6,6 +6,7 @@ import {expandDown, routerTransition} from './animations';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {WeatherService} from './weather/weather.service';
+import {firebaseApp} from './app.module';
 
 @Component({
     selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent {
     open = false;
     environment = environment;
 
-    constructor(public batteryService: BatteryService, public weatherService: WeatherService, router: Router, route: ActivatedRoute, breakpointObserver: BreakpointObserver) {
+    constructor(private router: Router, public batteryService: BatteryService, public weatherService: WeatherService, route: ActivatedRoute, breakpointObserver: BreakpointObserver) {
         router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
             this.hide = !!route.root.firstChild.snapshot.data.hide;
             this.open = !this.hide && !this.mobile;
@@ -28,5 +29,15 @@ export class AppComponent {
             this.mobile = result.matches;
             this.open = !this.mobile;
         })
+    }
+
+    async logout() {
+        await firebaseApp.auth().signOut();
+        return this.router.navigate(['/login'])
+    }
+
+    getState(outlet) {
+        if(!outlet.isActivated) return '';
+        return outlet.activatedRouteData.noAnimation ? '' : outlet.activatedRoute;
     }
 }

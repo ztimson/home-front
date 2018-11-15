@@ -8,8 +8,8 @@ import {
 
 export const expandDown = trigger('expandDown', [
     transition('void => *', [
-        style({transform: 'translateY(-100%)'}),
-        animate('0.5s ease-in-out', style({transform: 'translateY(0%)'}))
+        style({opacity: 0, transform: 'translateY(-100%)'}),
+        animate('0.5s ease-in-out', style({opacity: 1, transform: 'translateY(0%)'}))
     ])
 ]);
 

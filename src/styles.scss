@@ -29,6 +29,19 @@ html, body {
     background-color: #2F323A;
 }
 
+.center {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.off-center {
+    position: fixed;
+    left: calc(50% - 75px);
+    top: 75%;
+}
+
 .mat-list-item {
     height: auto !important;
     color: #9CA4B6 !important;
@@ -74,10 +87,26 @@ html, body {
     vertical-align: middle;
 }
 
-.mat-stroked-button {
+.mat-stroked-button:not([disabled]) {
     border-color: #ffffff !important;
 }
 
 .mat-form-field label {
     color: #ffffff !important;
+}
+
+.flex-grow-0 {
+    flex-grow: 0;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-grow-2 {
+    flex-grow: 2;
+}
+
+.flex-grow-3 {
+    flex-grow: 3;
 }
