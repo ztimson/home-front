@@ -1,11 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BatteryService} from './battery.service';
+import {BarVerticalComponent} from '@swimlane/ngx-charts/release/bar-chart';
 
 @Component({
     selector: 'app-batterys',
     templateUrl: './battery.component.html'
 })
-export class BatteryComponent {
+export class BatteryComponent implements OnInit {
+    @ViewChild('chart1') chart1: BarVerticalComponent;
+    @ViewChild('chart2') chart2: BarVerticalComponent;
 
     airScheme = {
         name: 'air',
@@ -22,6 +25,13 @@ export class BatteryComponent {
     };
 
     constructor(public batteryService: BatteryService) { }
+
+    ngOnInit() {
+        setTimeout(() => {
+            this.chart1.update();
+            this.chart2.update();
+        }, 1000);
+    }
 
     round(num: number) {
         return Math.round(num * 10) / 10;
