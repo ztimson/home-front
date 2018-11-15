@@ -10,7 +10,7 @@ import {
     MatCardModule,
     MatDividerModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
-    MatListModule, MatProgressBarModule,
+    MatListModule, MatProgressSpinnerModule,
     MatSidenavModule,
     MatToolbarModule
 } from '@angular/material';
@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import {environment} from '../environments/environment';
 import * as firebase from 'firebase/app';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {LineChartModule} from '@swimlane/ngx-charts';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
 
@@ -43,6 +44,7 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         BrowserAnimationsModule,
         FormsModule,
         HttpClientModule,
+        LineChartModule,
         MatButtonModule,
         MatCardModule,
         MatDividerModule,
@@ -50,7 +52,7 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         MatIconModule,
         MatInputModule,
         MatListModule,
-        MatProgressBarModule,
+        MatProgressSpinnerModule,
         MatSidenavModule,
         MatToolbarModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),

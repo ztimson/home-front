@@ -1,3 +1,8 @@
-<p>
-  batterys works!
-</p>
+<h1>BATTERY LEVEL: <span class="text-muted">{{batteryService.charging == null ? 'UNKNOWN' : batteryService.average}}</span></h1>
+<mat-card>
+    <h3>EMULATOR: <span class="text-muted">75%</span></h3>
+    <div>
+        <mat-icon style="font-size: 128px; height:128px; width:128px">{{batteryService.icon}}</mat-icon>
+        <i class="wi wi-fw wi-thermometer-exterior"></i> {{tempHist[tempHist.length - 1]}} °C
+    </div>
+</mat-card>

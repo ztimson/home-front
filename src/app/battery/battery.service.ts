@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 })
 export class BatteryService {
     percentage: number[] = [0];
-    charging: boolean;
+    charging?: boolean;
 
     get average() {
         return this.percentage.reduce((acc, battery) => acc + battery, 0) / this.percentage.length;

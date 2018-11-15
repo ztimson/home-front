@@ -1,19 +1,5 @@
-<!--
-<div class="align-self-center">
-    <div class="text-center">
-        <div>
-            <h1 class="d-inline text-white">Home Front</h1>
-            <div [@growX]="true" class="d-inline">
-                <span class="pl-2" style="color: #b7b7b7">v{{environment.version}}</span>
-            </div>
-        </div>
-    </div>
-    <div class="mt-5 text-center">
-        <img src="assets/icon-white.png" width="275px" height="auto">
-    </div>
-    <button mat-stroked-button class="mt-5" (click)="login()" [disabled]="loading">Login With Google</button>
-</div>
--->
+<div *ngIf="loading" [@fade]="true" style="position: fixed; z-index: 1000; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5);"></div>
+
 <div class="center">
     <div class="text-center">
         <h1 class="d-inline text-white">Home Front</h1>
@@ -22,6 +8,6 @@
         <img src="assets/icon-white.png" width="275px" height="auto">
     </div>
 </div>
-<div class="off-center" [@expandDown]="animate">
+<div class="off-center" [@expandDown]="true">
     <button mat-stroked-button class="mt-5" style="width: 150px" (click)="login()" [disabled]="loading">Login With Google</button>
 </div>
