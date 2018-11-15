@@ -1,36 +1,56 @@
 import {Injectable} from '@angular/core';
+import {firebaseApp} from '../app.module';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BatteryService {
-    percentage: number[] = [0];
-    charging?: boolean;
+    readonly firestore;
 
-    get average() {
-        return this.percentage.reduce((acc, battery) => acc + battery, 0) / this.percentage.length;
+    average = 0;
+    temperatureData = [];
+    percentageData = [];
+    batteries = [];
+    last: Date;
+
+    constructor() {
+        this.firestore = firebaseApp.firestore();
+        this.firestore.settings({timestampsInSnapshots: true});
+        this.firestore.collection('Battery').doc('TEMP').onSnapshot(snap => {
+            this.last = new Date();
+
+            let data = snap.data();
+            this.batteries = Object.keys(data).map(key => ({name: key, history: data[key].reverse()}));
+            this.average = this.batteries.reduce((acc, battery) => acc + battery.history[0].percentage, 0) / this.batteries.length;
+            this.percentageData = this.batteries.map(battery => ({name: battery.name, value: battery.history[0].percentage * 100}));
+            this.temperatureData = this.batteries.map(battery => ({name: battery.name, value: Math.round(battery.history[0].temp * 10) / 10}));
+        });
     }
 
+
+
     get icon() {
-        if (this.charging == null) return 'battery_unknown';
+        if (!this.batteries.length) return 'battery_alert';
+        if (!this.last || this.last.getTime() < new Date().setMinutes(new Date().getMinutes() - 2).getTime()) return 'battery_warn';
+
+        return 'battery_20';
 
         let temp = 'battery';
-        if (this.charging) temp += '_charging';
+        //if (this.batteries.length) temp += '_charging';
 
-        let average = this.average;
-        if (average <= 20) {
+        if (this.average <= 20) {
             temp += '_20';
-        } else if (average <= 30) {
+        } else if (this.average <= 30) {
             temp += '_30';
-        } else if (average <= 50) {
+        } else if (this.average <= 50) {
             temp += '_50';
-        } else if (average <= 60) {
+        } else if (this.average <= 60) {
             temp += '_60';
-        } else if (average <= 80) {
+        } else if (this.average <= 80) {
             temp += '_80';
-        } else if (average <= 90) {
+        } else if (this.average <= 90) {
             temp += '_90';
-        } else if (average > 90) {
+        } else if (this.average > 90) {
             temp += 'full'
         }
 

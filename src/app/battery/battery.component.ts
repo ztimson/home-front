@@ -1,17 +1,25 @@
 import {Component} from '@angular/core';
 import {BatteryService} from './battery.service';
-import {firebaseApp} from '../app.module';
 
 @Component({
     selector: 'app-batterys',
     templateUrl: './battery.component.html'
 })
 export class BatteryComponent {
-    tempHist = [];
 
-    constructor(public batteryService: BatteryService) {
-        firebaseApp.firestore().collection('Battery').doc('TEMP').onSnapshot(snap => {
-            this.tempHist.push(Math.round(snap.get('temp') * 10) / 10);
-        })
-    }
+    airScheme = {
+        name: 'air',
+        selectable: true,
+        group: 'Continuous',
+        domain: ['#e1f5fe', '#b3e5fc', '#81d4fa', '#4fc3f7', '#29b6f6', '#03a9f4', '#039be5', '#0288d1', '#0277bd', '#01579b']
+    };
+
+    fireScheme = {
+        name: 'flame',
+        selectable: false,
+        group: 'Continuous',
+        domain: ['#00deff', '#3db0ff', '#a274d7', '#c42576', '#9f0000']
+    };
+
+    constructor(public batteryService: BatteryService) { }
 }

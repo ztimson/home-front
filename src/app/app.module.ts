@@ -24,7 +24,7 @@ import { LoginComponent } from './login/login.component';
 import {environment} from '../environments/environment';
 import * as firebase from 'firebase/app';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import {LineChartModule} from '@swimlane/ngx-charts';
+import {LineChartModule, NgxChartsModule} from '@swimlane/ngx-charts';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
 
@@ -55,6 +55,7 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         MatProgressSpinnerModule,
         MatSidenavModule,
         MatToolbarModule,
+        NgxChartsModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
     ],
     providers: [],

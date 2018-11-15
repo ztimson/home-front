@@ -1,8 +1,38 @@
-<h1>BATTERY LEVEL: <span class="text-muted">{{batteryService.charging == null ? 'UNKNOWN' : batteryService.average}}</span></h1>
-<mat-card>
-    <h3>EMULATOR: <span class="text-muted">75%</span></h3>
-    <div>
-        <mat-icon style="font-size: 128px; height:128px; width:128px">{{batteryService.icon}}</mat-icon>
-        <i class="wi wi-fw wi-thermometer-exterior"></i> {{tempHist[tempHist.length - 1]}} °C
+<h1>POWER WALL:
+    <span *ngIf="batteryService.batteries.length" class="text-muted">{{batteryService.average * 100}}%</span>
+    <span *ngIf="!batteryService.batteries.length" class="text-muted">UNKNOWN</span>
+</h1>
+<div class="d-flex flex-column flex-md-row">
+    <div style="overflow: auto">
+        <ngx-charts-bar-vertical
+            [results]="batteryService.percentageData"
+            [scheme]="airScheme"
+            [view]="[400, 200]"
+            [xAxis]="true"
+            [yAxis]="true"
+            [yScaleMin]="0"
+            [yScaleMax]="100"
+        ></ngx-charts-bar-vertical>
     </div>
+    <div style="overflow: auto">
+        <ngx-charts-bar-vertical
+            [results]="batteryService.temperatureData"
+            [scheme]="fireScheme"
+            schemeType="linear"
+            [view]="[400, 200]"
+            [xAxis]="true"
+            [yAxis]="true"
+            [yScaleMin]="0"
+            [yScaleMax]="100"
+        ></ngx-charts-bar-vertical>
+    </div>
+</div>
+<mat-card *ngFor="let b of batteryService.batteries" class="mt-3">
+    {{b.name}}
+    <br>
+    {{b.history[0].percentage * 100}}%
+    <br>
+    {{b.history[0].temp}} °C
+    <br>
+    Charging: {{b.history[0].charging}}
 </mat-card>
