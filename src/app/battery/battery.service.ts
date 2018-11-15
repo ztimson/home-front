@@ -27,13 +27,11 @@ export class BatteryService {
         });
     }
 
-
-
     get icon() {
         if (!this.batteries.length) return 'battery_alert';
-        if (!this.last || this.last.getTime() < new Date().setMinutes(new Date().getMinutes() - 2).getTime()) return 'battery_warn';
+        if (!this.last) return 'battery_warn';
 
-        return 'battery_20';
+        return 'battery_full';
 
         let temp = 'battery';
         //if (this.batteries.length) temp += '_charging';
@@ -55,8 +53,5 @@ export class BatteryService {
         }
 
         return temp;
-    }
-
-    constructor() {
     }
 }
