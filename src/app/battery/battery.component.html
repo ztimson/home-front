@@ -32,7 +32,7 @@
     <h3>{{b.name}}</h3>
     {{b.history[0].percentage * 100}}%
     <br>
-    {{b.history[0].temp}} °C
+    {{round(b.history[0].temp)}} °C
     <br>
     Charging: {{b.history[0].charging}}
 </mat-card>

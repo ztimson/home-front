@@ -22,4 +22,8 @@ export class BatteryComponent {
     };
 
     constructor(public batteryService: BatteryService) { }
+
+    round(num: number) {
+        return Math.round(num * 10) / 10;
+    }
 }
