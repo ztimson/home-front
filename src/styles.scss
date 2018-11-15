@@ -35,6 +35,14 @@ html, body {
     }
 }
 
+.mobile-height{
+    height: calc(100vh - 56px);
+}
+
+.desktop-height{
+    height: calc(100vh - 64px);
+}
+
 .center {
     position: fixed;
     left: 50%;

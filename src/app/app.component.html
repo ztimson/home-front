@@ -6,7 +6,7 @@
         <small class="text-muted ml-2">v{{environment.version}}</small>
     </span>
 </mat-toolbar>
-<mat-drawer-container [hasBackdrop]="false" style="height: calc(100vh - 64px)">
+<mat-drawer-container [hasBackdrop]="false" [ngClass]="{'mobile-height': mobile, 'desktop-height': !mobile}">
     <mat-drawer class="bg-primary" [mode]="mobile ? 'push' : 'side'" [opened]="open" [disableClose]="!mobile" [autoFocus]="false">
         <mat-nav-list class="p-0">
             <mat-divider></mat-divider>

@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BatteryService} from './battery.service';
 import {BarVerticalComponent} from '@swimlane/ngx-charts/release/bar-chart';
+import {AppComponent} from '../app.component';
 
 @Component({
     selector: 'app-batterys',
@@ -19,12 +20,12 @@ export class BatteryComponent implements OnInit {
 
     fireScheme = {
         name: 'flame',
-        selectable: false,
+        selectable: true,
         group: 'Continuous',
         domain: ['#00deff', '#3db0ff', '#a274d7', '#c42576', '#9f0000']
     };
 
-    constructor(public batteryService: BatteryService) { }
+    constructor(public app: AppComponent, public batteryService: BatteryService) { }
 
     ngOnInit() {
         setTimeout(() => {

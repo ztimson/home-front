@@ -4,26 +4,26 @@
 </h1>
 <div class="d-flex flex-column flex-md-row" style="min-height: 400px">
     <div class="flex-grow-1 flex-basis-0 mb-3" style="overflow: hidden; height: 400px">
-        <h5 class="pl-2">Charge</h5>
         <ngx-charts-bar-vertical #chart1
-            [results]="batteryService.percentageData"
-            [scheme]="airScheme"
-            [xAxis]="true"
-            [yAxis]="true"
-            [yScaleMin]="0"
-            [yScaleMax]="100"
+                                 [results]="batteryService.percentageData"
+                                 [scheme]="airScheme"
+                                 [xAxis]="true"
+                                 [yAxis]="true"
+                                 [yScaleMin]="0"
+                                 [yScaleMax]="100"
         ></ngx-charts-bar-vertical>
     </div>
     <div class="flex-grow-1 flex-basis-0 mb-3" style="overflow: hidden; height: 400px">
-        <h5 class="pl-2">Temperature</h5>
         <ngx-charts-bar-vertical #chart2
-            [results]="batteryService.temperatureData"
-            [scheme]="fireScheme"
-            schemeType="linear"
-            [xAxis]="true"
-            [yAxis]="true"
-            [yScaleMin]="0"
-            [yScaleMax]="100"
+                                 [results]="batteryService.temperatureData"
+                                 [scheme]="fireScheme"
+                                 schemeType="linear"
+                                 [xAxis]="true"
+                                 [yAxis]="true"
+                                 [yScaleMin]="0"
+                                 [yScaleMax]="100"
+                                 legendTitle="Temperature"
+                                 [legend]="!app.mobile"
         ></ngx-charts-bar-vertical>
     </div>
 </div>
