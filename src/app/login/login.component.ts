@@ -1,5 +1,4 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {environment} from '../../environments/environment';
 import {firebaseApp} from '../app.module';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
@@ -12,7 +11,6 @@ import {expandDown} from '../animations';
 })
 export class LoginComponent implements OnInit {
     animate = false;
-    environment = environment;
 
     constructor(private router: Router, private ngZone: NgZone) { }
 
@@ -21,7 +19,7 @@ export class LoginComponent implements OnInit {
             if(!!user) this.ngZone.run(() => this.router.navigate(['/dashboard']));
         });
 
-        setTimeout(this.ngZone.run(() => this.animate = true), 1000);
+        setTimeout(() => this.ngZone.run(() => this.animate = true), 1000);
     }
 
     async login() {
