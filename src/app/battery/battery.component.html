@@ -1,9 +1,10 @@
-<h1>POWER WALL:
+<h1>Powerwall:
     <span *ngIf="batteryService.batteries.length" class="text-muted">{{batteryService.average * 100}}%</span>
     <span *ngIf="!batteryService.batteries.length" class="text-muted">UNKNOWN</span>
 </h1>
-<div class="d-flex flex-column flex-md-row mb-3">
-    <div class="flex-grow-1 flex-basis-0" style="overflow: hidden; height: 400px">
+<div class="d-flex flex-column flex-md-row" style="min-height: 400px">
+    <div class="flex-grow-1 flex-basis-0 mb-3" style="overflow: hidden; height: 400px">
+        <h5 class="pl-2">Charge</h5>
         <ngx-charts-bar-vertical #chart1
             [results]="batteryService.percentageData"
             [scheme]="airScheme"
@@ -13,7 +14,8 @@
             [yScaleMax]="100"
         ></ngx-charts-bar-vertical>
     </div>
-    <div class="flex-grow-1 flex-basis-0" style="overflow: hidden; height: 400px">
+    <div class="flex-grow-1 flex-basis-0 mb-3" style="overflow: hidden; height: 400px">
+        <h5 class="pl-2">Temperature</h5>
         <ngx-charts-bar-vertical #chart2
             [results]="batteryService.temperatureData"
             [scheme]="fireScheme"
