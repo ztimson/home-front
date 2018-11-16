@@ -38,7 +38,7 @@ export class AppComponent {
         return this.router.navigate(['/login']).then(() => this.noTransition = false);
     }
 
-    getState(outlet) {
+    transition(outlet) {
         if(!outlet.isActivated || !!outlet.activatedRouteData.noAnimation || this.noTransition) return '';
         return outlet.activatedRoute;
     }

@@ -24,8 +24,8 @@
             <mat-divider></mat-divider>
         </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-content class="bg-secondary text-white" [ngClass]="{'p-4': !hide}" (click)="open = (mobile && open) ? false : open" style="position: relative">
-        <main class="h-100" [@routerTransition]="getState(o)">
+    <mat-drawer-content class="bg-secondary text-white p-4" (click)="open = (mobile && open) ? false : open">
+        <main class="h-100" [@routerTransition]="transition(o)">
             <router-outlet #o="outlet"></router-outlet>
         </main>
     </mat-drawer-content>
