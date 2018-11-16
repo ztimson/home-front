@@ -1,37 +1,30 @@
-<h1>Powerwall:
+<h1 class="mb-3">
+    <mat-icon>{{batteryService.icon}}</mat-icon>
+    Powerwall:
     <span *ngIf="batteryService.batteries.length" class="text-muted">{{batteryService.average * 100}}%</span>
     <span *ngIf="!batteryService.batteries.length" class="text-muted">UNKNOWN</span>
 </h1>
-<div class="d-flex flex-column flex-md-row" style="min-height: 400px">
-    <div class="flex-grow-1 flex-basis-0 mb-3" style="overflow: hidden; height: 400px">
-        <ngx-charts-bar-vertical #chart1
-                                 [results]="batteryService.percentageData"
-                                 [scheme]="airScheme"
-                                 [xAxis]="true"
-                                 [yAxis]="true"
-                                 [yScaleMin]="0"
-                                 [yScaleMax]="100"
-        ></ngx-charts-bar-vertical>
-    </div>
-    <div class="flex-grow-1 flex-basis-0 mb-3" style="overflow: hidden; height: 400px">
-        <ngx-charts-bar-vertical #chart2
-                                 [results]="batteryService.temperatureData"
-                                 [scheme]="fireScheme"
-                                 schemeType="linear"
-                                 [xAxis]="true"
-                                 [yAxis]="true"
-                                 [yScaleMin]="0"
-                                 [yScaleMax]="100"
-                                 legendTitle="Temperature"
-                                 [legend]="!app.mobile"
-        ></ngx-charts-bar-vertical>
-    </div>
+<div class="w-100 mb-5" style="min-height: 400px">
+    <ngx-charts-area-chart #chart1
+                           [results]="batteryService.percentageData"
+                           [scheme]="airScheme"
+                           [yAxis]="true"
+                           [yScaleMin]="0"
+                           [yScaleMax]="100"
+                           legendTitle="Charge"
+                           [legend]="!app.mobile"
+                           [roundDomains]="true"
+    ></ngx-charts-area-chart>
 </div>
-<mat-card *ngFor="let b of batteryService.batteries" class="mb-3">
-    <h5>{{b.name}}</h5>
-    {{b.history[0].percentage * 100}}%
-    <br>
-    {{round(b.history[0].temp)}} °C
-    <br>
-    Charging: {{b.history[0].charging}}
-</mat-card>
+<div class="w-100 pt-5" style="min-height: 400px">
+    <ngx-charts-area-chart #chart2
+                           [results]="batteryService.temperatureData"
+                           [scheme]="airScheme"
+                           [yAxis]="true"
+                           [yScaleMin]="0"
+                           [yScaleMax]="100"
+                           legendTitle="Temperature"
+                           [legend]="!app.mobile"
+                           [roundDomains]="true"
+    ></ngx-charts-area-chart>
+</div>

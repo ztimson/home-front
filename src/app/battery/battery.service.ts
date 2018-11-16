@@ -20,10 +20,10 @@ export class BatteryService {
             this.last = new Date();
 
             let data = snap.data();
-            this.batteries = Object.keys(data).map(key => ({name: key, history: data[key].reverse()}));
+            this.batteries = Object.keys(data).map(key => ({name: key, history: data[key]}));
             this.average = this.batteries.reduce((acc, battery) => acc + battery.history[0].percentage, 0) / this.batteries.length;
-            this.percentageData = this.batteries.map(battery => ({name: battery.name, value: battery.history[0].percentage * 100}));
-            this.temperatureData = this.batteries.map(battery => ({name: battery.name, value: Math.round(battery.history[0].temp * 10) / 10}));
+            this.percentageData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: history.percentage * 100}))}));
+            this.temperatureData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: Math.round(history.temp * 10) / 10}))}));
         });
     }
 
