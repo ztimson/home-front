@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {BatteryService} from './battery/battery.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {environment} from '../environments/environment';
-import {expandDown, routerTransition} from './animations';
+import {collapseUp, expandDown, routerTransition} from './animations';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {WeatherService} from './weather/weather.service';
@@ -11,13 +11,14 @@ import {firebaseApp} from './app.module';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    animations: [expandDown, routerTransition]
+    animations: [collapseUp, expandDown, routerTransition]
 })
 export class AppComponent {
-    hide = false;
-    mobile = true;
-    open = false;
-    environment = environment;
+    hide = false; // Hide nav
+    mobile = true; // Mobile or desktop size
+    noTransition = false; // Stop router transitions
+    open = false; // Side nav open
+    environment = environment; // Environment ref
 
     constructor(private router: Router, public batteryService: BatteryService, public weatherService: WeatherService, route: ActivatedRoute, breakpointObserver: BreakpointObserver) {
         router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
@@ -32,12 +33,13 @@ export class AppComponent {
     }
 
     async logout() {
+        this.noTransition = true;
         await firebaseApp.auth().signOut();
-        return this.router.navigate(['/login'])
+        return this.router.navigate(['/login']).then(() => this.noTransition = false);
     }
 
     getState(outlet) {
-        if(!outlet.isActivated) return '';
-        return outlet.activatedRouteData.noAnimation ? '' : outlet.activatedRoute;
+        if(!outlet.isActivated || !!outlet.activatedRouteData.noAnimation || this.noTransition) return '';
+        return outlet.activatedRoute;
     }
 }
