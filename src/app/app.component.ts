@@ -26,7 +26,7 @@ export class AppComponent {
             this.open = !this.hide && !this.mobile;
         });
 
-        breakpointObserver.observe([Breakpoints.Handset]).subscribe(result => {
+        breakpointObserver.observe([Breakpoints.Handset, Breakpoints.Tablet]).subscribe(result => {
             this.mobile = result.matches;
             this.open = !this.mobile;
         })
