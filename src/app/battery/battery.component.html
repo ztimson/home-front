@@ -7,7 +7,7 @@
 <div class="w-100 mb-5" style="min-height: 400px">
     <ngx-charts-area-chart #chart1
                            [results]="batteryService.percentageData"
-                           [scheme]="airScheme"
+                           [scheme]="scheme"
                            [yAxis]="true"
                            [yScaleMin]="0"
                            [yScaleMax]="100"
@@ -19,10 +19,10 @@
 <div class="w-100 pt-5" style="min-height: 400px">
     <ngx-charts-area-chart #chart2
                            [results]="batteryService.temperatureData"
-                           [scheme]="airScheme"
+                           [scheme]="scheme"
                            [yAxis]="true"
                            [yScaleMin]="0"
-                           [yScaleMax]="100"
+                           [yScaleMax]="80"
                            legendTitle="Temperature"
                            [legend]="!app.mobile"
                            [roundDomains]="true"

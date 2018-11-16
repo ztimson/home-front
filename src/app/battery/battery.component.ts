@@ -11,18 +11,11 @@ export class BatteryComponent implements OnInit {
     @ViewChild('chart1') chart1: BarVerticalComponent;
     @ViewChild('chart2') chart2: BarVerticalComponent;
 
-    airScheme = {
-        name: 'air',
+    scheme = {
+        name: 'cool',
         selectable: true,
-        group: 'Continuous',
-        domain: ['#e1f5fe', '#b3e5fc', '#81d4fa', '#4fc3f7', '#29b6f6', '#03a9f4', '#039be5', '#0288d1', '#0277bd', '#01579b']
-    };
-
-    fireScheme = {
-        name: 'flame',
-        selectable: true,
-        group: 'Continuous',
-        domain: ['#00deff', '#3db0ff', '#a274d7', '#c42576', '#9f0000']
+        group: 'Ordinal',
+        domain: ['#a8385d', '#7aa3e5', '#a27ea8', '#aae3f5', '#adcded', '#a95963', '#8796c0', '#7ed3ed', '#50abcc', '#ad6886']
     };
 
     constructor(public app: AppComponent, public batteryService: BatteryService) { }
