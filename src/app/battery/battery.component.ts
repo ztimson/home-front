@@ -27,7 +27,11 @@ export class BatteryComponent implements OnInit {
         }, 1000);
     }
 
-    round(num: number) {
-        return Math.round(num * 10) / 10;
+    percentFormat(val) {
+        return `${val} %`
+    }
+
+    tempFormat(val) {
+        return `${val} °C`
     }
 }
