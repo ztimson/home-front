@@ -24,7 +24,7 @@
             <mat-divider></mat-divider>
         </mat-nav-list>
     </mat-drawer>
-    <mat-drawer-content class="bg-secondary text-white p-4" (click)="open = (mobile && open) ? false : open">
+    <mat-drawer-content class="bg-secondary text-white" (click)="open = (mobile && open) ? false : open">
         <main class="h-100" [@routerTransition]="transition(o)">
             <router-outlet #o="outlet"></router-outlet>
         </main>

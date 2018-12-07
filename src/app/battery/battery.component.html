@@ -1,32 +1,34 @@
-<h1 class="mb-3">
-    <mat-icon>{{batteryService.icon}}</mat-icon>
-    Powerwall:
-    <span *ngIf="batteryService.batteries.length" class="text-muted">{{batteryService.average * 100}}%</span>
-    <span *ngIf="!batteryService.batteries.length" class="text-muted">UNKNOWN</span>
-</h1>
-<div class="w-100 mb-5" style="min-height: 400px">
-    <ngx-charts-area-chart #chart1
-                           [results]="batteryService.percentageData"
-                           [scheme]="scheme"
-                           [yAxis]="true"
-                           [yScaleMin]="0"
-                           [yScaleMax]="100"
-                           [yAxisTickFormatting]="percentFormat"
-                           legendTitle="Charge"
-                           [legend]="!app.mobile"
-                           [roundDomains]="true"
-    ></ngx-charts-area-chart>
-</div>
-<div class="w-100 pt-5" style="min-height: 400px">
-    <ngx-charts-area-chart #chart2
-                           [results]="batteryService.temperatureData"
-                           [scheme]="scheme"
-                           [yAxis]="true"
-                           [yScaleMin]="0"
-                           [yScaleMax]="80"
-                           [yAxisTickFormatting]="tempFormat"
-                           legendTitle="Temperature"
-                           [legend]="!app.mobile"
-                           [roundDomains]="true"
-    ></ngx-charts-area-chart>
+<div class="p-3">
+    <h1 class="mb-3">
+        <mat-icon>{{batteryService.icon}}</mat-icon>
+        Powerwall:
+        <span *ngIf="batteryService.batteries.length" class="text-muted">{{batteryService.average * 100}}%</span>
+        <span *ngIf="!batteryService.batteries.length" class="text-muted">UNKNOWN</span>
+    </h1>
+    <div class="w-100 mb-5" style="min-height: 400px">
+        <ngx-charts-area-chart #chart1
+                               [results]="batteryService.percentageData"
+                               [scheme]="scheme"
+                               [yAxis]="true"
+                               [yScaleMin]="0"
+                               [yScaleMax]="100"
+                               [yAxisTickFormatting]="percentFormat"
+                               legendTitle="Charge"
+                               [legend]="!app.mobile"
+                               [roundDomains]="true"
+        ></ngx-charts-area-chart>
+    </div>
+    <div class="w-100 pt-5" style="min-height: 400px">
+        <ngx-charts-area-chart #chart2
+                               [results]="batteryService.temperatureData"
+                               [scheme]="scheme"
+                               [yAxis]="true"
+                               [yScaleMin]="0"
+                               [yScaleMax]="80"
+                               [yAxisTickFormatting]="tempFormat"
+                               legendTitle="Temperature"
+                               [legend]="!app.mobile"
+                               [roundDomains]="true"
+        ></ngx-charts-area-chart>
+    </div>
 </div>

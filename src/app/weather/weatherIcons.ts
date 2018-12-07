@@ -1,0 +1,16 @@
+export enum WeatherIcons {
+    'clear-day' = 'wi-day-sunny',
+    'clear-night' = 'wi-night-clear',
+    'cloudy' = 'wi-cloudy',
+    'default' = '',
+    'fog' = 'wi-fog',
+    'hail' = 'wi-hail',
+    'partly-cloudy-day' = 'wi-day-cloudy',
+    'partly-cloudy-night' = 'wi-night-alt-cloudy',
+    'rain' = 'wi-rain',
+    'sleet' = 'wi-sleet',
+    'snow' = 'wi-snow',
+    'thunderstorm' = 'wi-thunderstorm',
+    'tornado' = 'wi-tornado',
+    'wind' = 'wi-strong-wind',
+}
