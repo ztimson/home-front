@@ -18,6 +18,7 @@ export class WeatherService {
     forecast = [];
     humidity = 0;
     icon: string;
+    pop = 0;
     pressure = 0;
     sunrise: Date;
     sunset: Date;
@@ -46,6 +47,11 @@ export class WeatherService {
 
             // 5 day forecast
             httpClient.get(`https://api.openweathermap.org/data/2.5/forecast?q=${this.city},${this.countryCode}&APPID=${this.apiKey}&units=metric`).toPromise().then((weather: any) => {
+                this.pop = Math.round(weather.list.slice(0, 4).reduce((acc, weather) => {
+                    if(weather['rain']) acc += weather['rain']['3h'] || 0;
+                    if(weather['snow']) acc += weather['snow']['3h'] || 0;
+                    return acc;
+                }, 0) * 10) / 10;
                 let temp = weather.list.filter(weather => weather.dt_txt.indexOf('12:00:00') != -1);
                 temp.splice(0, temp.length - 5);
                 this.forecast = temp.map(weather => ({
