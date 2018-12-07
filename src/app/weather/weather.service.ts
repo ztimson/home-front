@@ -52,13 +52,20 @@ export class WeatherService {
                     if(weather['snow']) acc += weather['snow']['3h'] || 0;
                     return acc;
                 }, 0) * 10) / 10;
-                let temp = weather.list.filter(weather => weather.dt_txt.indexOf('12:00:00') != -1);
-                temp.splice(0, temp.length - 5);
-                this.forecast = temp.map(weather => ({
-                    day: this.days[new Date(weather.dt_txt).getDay()],
-                    icon: `wi-${this.weatherCodes[weather.weather[0].id].icon}`,
-                    temp: Math.round(weather.main.temp)
-                }));
+
+                let temp = {};
+                weather.list.forEach(weather => {
+                    let day = /\d\d\d\d-\d\d-(\d\d)/.exec(weather.dt_txt)[1];
+
+                    if(!temp[day]) temp[day] = {};
+                    if(!temp[day].max || weather.main.temp_max > temp[day].max) temp[day].max = Math.round(weather.main.temp_max);
+                    if(!temp[day].min || weather.main.temp_min < temp[day].min) temp[day].min = Math.round(weather.main.temp_min);
+                    if(weather.dt_txt.indexOf('12:00:00') != -1) {
+                        temp[day].day = this.days[new Date(weather.dt_txt).getDay()];
+                        temp[day].icon = `wi-${this.weatherCodes[weather.weather[0].id].icon}`;
+                    }
+                });
+                this.forecast = Object.values(temp);
             });
         });
     }

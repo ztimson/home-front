@@ -22,7 +22,8 @@
         <div *ngFor="let w of weatherService.forecast" class="d-flex flex-column align-items-center flex-grow-1" style="max-width: 75px;">
             {{w.day}}
             <i [class]="'my-2 wi wi-fw ' + w.icon" style="font-size: 2rem"></i>
-            {{w.temp}} °C
+            <div class="text-center">{{w.max}} °C</div>
+            <div class="text-center text-muted">{{w.min}} °C</div>
         </div>
     </div>
     <mat-divider></mat-divider>
