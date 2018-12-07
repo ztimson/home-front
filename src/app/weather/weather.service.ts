@@ -55,13 +55,14 @@ export class WeatherService {
 
                 let temp = {};
                 weather.list.forEach(weather => {
-                    let day = /\d\d\d\d-\d\d-(\d\d)/.exec(weather.dt_txt)[1];
-
+                    let timestamp = new Date(weather.dt * 1000);
+                    let day = timestamp.getDate();
+                    console.log(timestamp.getHours());
                     if(!temp[day]) temp[day] = {};
                     if(!temp[day].max || weather.main.temp_max > temp[day].max) temp[day].max = Math.round(weather.main.temp_max);
                     if(!temp[day].min || weather.main.temp_min < temp[day].min) temp[day].min = Math.round(weather.main.temp_min);
-                    if(weather.dt_txt.indexOf('12:00:00') != -1) {
-                        temp[day].day = this.days[new Date(weather.dt_txt).getDay()];
+                    if(!temp[day].day || timestamp.getHours() == 13) {
+                        temp[day].day = timestamp.toString().substring(0, 4);
                         temp[day].icon = `wi-${this.weatherCodes[weather.weather[0].id].icon}`;
                     }
                 });
