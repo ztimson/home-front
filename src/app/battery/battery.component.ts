@@ -28,7 +28,7 @@ export class BatteryComponent implements OnInit {
     }
 
     percentFormat(val) {
-        return `${val} %`
+        return `${val} V`
     }
 
     tempFormat(val) {

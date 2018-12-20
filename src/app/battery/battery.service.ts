@@ -44,13 +44,15 @@ export class BatteryService {
     constructor() {
         this.firestore = firebaseApp.firestore();
         this.firestore.settings({timestampsInSnapshots: true});
-        this.firestore.collection('Battery').doc('TEMP').onSnapshot(snap => {
+        this.firestore.collection('Battery').doc('170724D').onSnapshot(snap => {
             this.last = new Date();
 
             let data = snap.data();
-            this.batteries = Object.keys(data).map(key => ({name: key, history: data[key]}));
-            this.average = this.batteries.reduce((acc, battery) => acc + battery.history[0].percentage, 0) / this.batteries.length;
-            this.percentageData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: history.percentage * 100}))}));
+            console.log(data);
+
+            this.batteries = Object.keys(data.modules).map(key => ({name: key, history: data.modules[key]}));
+            this.average = this.batteries.reduce((acc, battery) => acc + battery.history[0].charge, 0) / this.batteries.length;
+            this.percentageData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: history.charge}))}));
             this.temperatureData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: Math.round(history.temp * 10) / 10}))}));
         });
     }
