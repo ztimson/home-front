@@ -9,7 +9,7 @@ export class BatteryService {
 
     average = 0;
     temperatureData = [];
-    percentageData = [];
+    chargeData = [];
     batteries = [];
     last: Date;
 
@@ -52,8 +52,8 @@ export class BatteryService {
 
             this.batteries = Object.keys(data.modules).map(key => ({name: key, history: data.modules[key]}));
             this.average = this.batteries.reduce((acc, battery) => acc + battery.history[0].charge, 0) / this.batteries.length;
-            this.percentageData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: history.charge}))}));
-            this.temperatureData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: Math.round(history.temp * 10) / 10}))}));
+            this.chargeData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: history.charge}))}));
+            this.temperatureData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: Math.round((history.temp || 0) * 10) / 10}))}));
         });
     }
 }
