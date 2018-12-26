@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {
-    MatButtonModule,
+    MatButtonModule, MatButtonToggleModule,
     MatCardModule,
     MatDividerModule, MatFormFieldModule,
     MatIconModule, MatInputModule,
@@ -48,6 +48,7 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         HttpClientModule,
         LineChartModule,
         MatButtonModule,
+        MatButtonToggleModule,
         MatCardModule,
         MatDividerModule,
         MatFormFieldModule,

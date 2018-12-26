@@ -1,34 +1,49 @@
 <div class="p-3">
-    <h1 class="mb-3">
-        <mat-icon>{{batteryService.icon}}</mat-icon>
-        Powerwall:
-        <span *ngIf="batteryService.batteries.length" class="text-muted">{{batteryService.average * 100}}%</span>
-        <span *ngIf="!batteryService.batteries.length" class="text-muted">UNKNOWN</span>
-    </h1>
-    <div class="w-100 mb-5" style="min-height: 400px">
-        <ngx-charts-area-chart #chart1
-                               [results]="batteryService.chargeData"
-                               [scheme]="scheme"
-                               [yAxis]="true"
-                               [yScaleMin]="0"
-                               [yScaleMax]="25"
-                               [yAxisTickFormatting]="percentFormat"
-                               legendTitle="Charge"
-                               [legend]="!app.mobile"
-                               [roundDomains]="true"
-        ></ngx-charts-area-chart>
+    <div class="d-flex mb-3">
+        <div class="d-flex flex-grow-1 align-items-center">
+            <h3 class="mb-0 text-white">Powerwall: {{batteryService.total}} V</h3>
+        </div>
+        <div class="d-flex flex-grow-1 align-content-center justify-content-end">
+            <mat-button-toggle-group (change)="batteryService.setRelayMode($event.value)">
+                <mat-button-toggle [value]="null" checked>Auto</mat-button-toggle>
+                <mat-button-toggle [value]="true">On</mat-button-toggle>
+                <mat-button-toggle [value]="false">Off</mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
     </div>
-    <div class="w-100 pt-5" style="min-height: 400px">
-        <ngx-charts-area-chart #chart2
-                               [results]="batteryService.temperatureData"
-                               [scheme]="scheme"
-                               [yAxis]="true"
-                               [yScaleMin]="0"
-                               [yScaleMax]="80"
-                               [yAxisTickFormatting]="tempFormat"
-                               legendTitle="Temperature"
-                               [legend]="!app.mobile"
-                               [roundDomains]="true"
-        ></ngx-charts-area-chart>
-    </div>
+    <mat-card class="mb-2" *ngFor="let battery of batteryService.batteries; let i = index">
+        <div class="d-flex">
+            <div class="d-flex flex-grow-1 align-items-center">
+                <h5 class="mb-0">{{battery.name}}</h5>
+            </div>
+            <div class="d-flex flex-grow-1 align-items-center justify-content-center">
+                <button mat-button (click)="selected = i" [ngClass]="{'text-success': battery.charging, 'text-danger': !battery.charging}">{{battery.charge | round: 1}} V</button>
+            </div>
+            <div class="d-flex flex-grow-1 align-items-center justify-content-end text-muted">
+                <button mat-button (click)="selected = batteryService.batteries.length + i">{{battery.temp | round}} °C</button>
+            </div>
+        </div>
+        <div *ngIf="selected == i" class="w-100" style="height: 200px">
+            <ngx-charts-area-chart class="w-100 h-100"
+                                   [results]="[{name: battery.name, series: battery.chargeHistory}]"
+                                   [scheme]="scheme"
+                                   [yAxis]="true"
+                                   [yScaleMin]="0"
+                                   [yScaleMax]="25"
+                                   [yAxisTickFormatting]="voltFormat"
+                                   [roundDomains]="true"
+            ></ngx-charts-area-chart>
+        </div>
+        <div *ngIf="selected == batteryService.batteries.length + i" class="w-100" style="height: 200px">
+            <ngx-charts-area-chart class="w-100 h-100"
+                                   [results]="[{name: battery.name, series: battery.tempHistory}]"
+                                   [scheme]="scheme"
+                                   [yAxis]="true"
+                                   [yScaleMin]="0"
+                                   [yScaleMax]="50"
+                                   [yAxisTickFormatting]="tempFormat"
+                                   [roundDomains]="true"
+            ></ngx-charts-area-chart>
+        </div>
+    </mat-card>
 </div>

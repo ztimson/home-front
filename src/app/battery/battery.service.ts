@@ -7,11 +7,9 @@ import {firebaseApp} from '../app.module';
 export class BatteryService {
     readonly firestore;
 
-    average = 0;
-    temperatureData = [];
-    chargeData = [];
     batteries = [];
     last: Date;
+    total: number = 0;
 
     get icon() {
         if (!this.batteries.length) return 'battery_alert';
@@ -20,9 +18,9 @@ export class BatteryService {
         return 'battery_full';
 
         let temp = 'battery';
-        //if (this.batteries.length) temp += '_charging';
+        // if (this.batteries.length) temp += '_charging';
 
-        if (this.average <= 20) {
+        /*if (this.average <= 20) {
             temp += '_20';
         } else if (this.average <= 30) {
             temp += '_30';
@@ -36,7 +34,7 @@ export class BatteryService {
             temp += '_90';
         } else if (this.average > 90) {
             temp += 'full'
-        }
+        }*/
 
         return temp;
     }
@@ -46,14 +44,22 @@ export class BatteryService {
         this.firestore.settings({timestampsInSnapshots: true});
         this.firestore.collection('Battery').doc('170724D').onSnapshot(snap => {
             this.last = new Date();
-
             let data = snap.data();
-            console.log(data);
+            this.batteries = Object.keys(data.modules).map(key => ({
+                charge: data.modules[key][0].charge,
+                chargeHistory: data.modules[key].map((val, i) => ({name: i, value: val.charge})),
+                charging: data.modules[key][0] > data.modules[key][1],
+                name: key,
+                temp: data.modules[key][0].temp,
+                tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
+            }));
+            this.total = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
 
-            this.batteries = Object.keys(data.modules).map(key => ({name: key, history: data.modules[key]}));
-            this.average = this.batteries.reduce((acc, battery) => acc + battery.history[0].charge, 0) / this.batteries.length;
-            this.chargeData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: history.charge}))}));
-            this.temperatureData = this.batteries.map(battery => ({name: battery.name, series: battery.history.map((history, i) => ({name: i, value: Math.round((history.temp || 0) * 10) / 10}))}));
+            console.log(this.batteries)
         });
+    }
+
+    setRelayMode(mode?:boolean) {
+        this.firestore.collection('Battery').doc('170724D').update({config: {relayMode: mode}});
     }
 }
