@@ -45,14 +45,17 @@ export class BatteryService {
         this.firestore.collection('Battery').doc('170724D').onSnapshot(snap => {
             this.last = new Date();
             let data = snap.data();
-            this.batteries = Object.keys(data.modules).map(key => ({
-                charge: data.modules[key][0].charge,
-                chargeHistory: data.modules[key].map((val, i) => ({name: i, value: val.charge})),
-                charging: data.modules[key][0] > data.modules[key][1],
-                name: key,
-                temp: data.modules[key][0].temp,
-                tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
-            }));
+            this.batteries = Object.keys(data.modules).map(key => {
+                let last = data.modules[key].length - 1;
+                return {
+                    charge: data.modules[key][last].charge,
+                    chargeHistory: data.modules[key].map((val, i) => ({name: i, value: val.charge})),
+                    charging: data.modules[key][last] > data.modules[key][last - 1],
+                    name: key,
+                    temp: data.modules[key][last].temp,
+                    tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
+                }
+            });
             this.total = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
 
             console.log(this.batteries)
