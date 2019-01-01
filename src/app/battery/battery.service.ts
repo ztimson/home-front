@@ -47,7 +47,8 @@ export class BatteryService {
             this.last = new Date();
             let data = snap.data();
 
-            this.relayMode = data.config.relayMode || null;
+            this.relayMode = data.config.relayMode || null
+            ;
 
             this.batteries = Object.keys(data.modules).map(key => {
                 let last = data.modules[key].length - 1;
