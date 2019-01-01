@@ -9,6 +9,7 @@ export class BatteryService {
 
     batteries = [];
     last: Date;
+    relayMode?: boolean = null;
     total: number = 0;
 
     get icon() {
@@ -45,6 +46,9 @@ export class BatteryService {
         this.firestore.collection('Battery').doc('170614D').onSnapshot(snap => {
             this.last = new Date();
             let data = snap.data();
+
+            this.relayMode = data.config.relayMode || null;
+
             this.batteries = Object.keys(data.modules).map(key => {
                 let last = data.modules[key].length - 1;
                 return {
@@ -56,20 +60,11 @@ export class BatteryService {
                     tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
                 }
             });
-
-            this.batteries.map((battery, i, arr) => {
-                if(i % 2 == 1) return battery;
-                console.log(i, battery.charge);
-                battery.charge = battery.charge - arr[i + 1].charge;
-            });
-
             this.total = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
-
-            console.log(this.batteries)
         });
     }
 
     setRelayMode(mode?:boolean) {
-        this.firestore.collection('Battery').doc('170724D').update({config: {relayMode: mode}});
+        this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: mode}});
     }
 }

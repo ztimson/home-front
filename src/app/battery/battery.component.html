@@ -4,7 +4,7 @@
             <h3 class="mb-0 text-white">Powerwall: {{batteryService.total | round}} V</h3>
         </div>
         <div class="d-flex flex-grow-1 align-content-center justify-content-end">
-            <mat-button-toggle-group (change)="batteryService.setRelayMode($event.value)">
+            <mat-button-toggle-group [(ngModel)]="batteryService.relayMode" (change)="batteryService.setRelayMode($event.value)">
                 <mat-button-toggle [value]="null" checked>Auto</mat-button-toggle>
                 <mat-button-toggle [value]="true">On</mat-button-toggle>
                 <mat-button-toggle [value]="false">Off</mat-button-toggle>
