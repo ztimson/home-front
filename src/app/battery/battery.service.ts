@@ -57,6 +57,12 @@ export class BatteryService {
                 }
             });
 
+            this.batteries.map((battery, i, arr) => {
+                if(i % 2 == 1) return battery;
+                console.log(i, battery.charge);
+                battery.charge = battery.charge - arr[i + 1].charge;
+            });
+
             this.total = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
 
             console.log(this.batteries)
