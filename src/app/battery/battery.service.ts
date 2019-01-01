@@ -42,7 +42,7 @@ export class BatteryService {
     constructor() {
         this.firestore = firebaseApp.firestore();
         this.firestore.settings({timestampsInSnapshots: true});
-        this.firestore.collection('Battery').doc('170724D').onSnapshot(snap => {
+        this.firestore.collection('Battery').doc('170614D').onSnapshot(snap => {
             this.last = new Date();
             let data = snap.data();
             this.batteries = Object.keys(data.modules).map(key => {
@@ -56,6 +56,7 @@ export class BatteryService {
                     tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
                 }
             });
+
             this.total = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
 
             console.log(this.batteries)
