@@ -48,7 +48,7 @@ html, body {
     cursor: pointer;
 }
 
-.desktop-height{
+.desktop-height {
     height: calc(100vh - 64px);
 }
 
@@ -146,4 +146,10 @@ html, body {
 
 .text-muted {
     color: #7f7f7f !important;
+}
+
+@media (max-width: 599px) {
+    .desktop-height {
+        height: calc(100vh - 56px);
+    }
 }
