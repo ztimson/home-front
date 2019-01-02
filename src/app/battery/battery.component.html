@@ -1,4 +1,4 @@
-<div class="p-3">
+<div class="desktop-height p-3" style="background-color: #b52e3c !important;">
     <div class="d-flex mb-3">
         <div class="d-flex flex-grow-1 align-items-center">
             <h3 class="mb-0 text-white">Powerwall: {{batteryService.charge | round}} V</h3>
@@ -17,7 +17,7 @@
                 <h5 class="mb-0">{{battery.name}}</h5>
             </div>
             <div class="d-flex flex-grow-1 align-items-center justify-content-center">
-                <button mat-button (click)="selected = i" [ngClass]="{'text-success': battery.charging, 'text-danger': !battery.charging}">{{battery.charge | round: 1}} V</button>
+                <button mat-button (click)="selected = i" [ngClass]="{'text-success': batteryService.charging, 'text-danger': !batteryService.charging}">{{battery.charge | round: 1}} V</button>
             </div>
             <div class="d-flex flex-grow-1 align-items-center justify-content-end text-muted">
                 <button mat-button (click)="selected = batteryService.batteries.length + i">{{battery.temp | round}} °C</button>

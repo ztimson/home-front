@@ -25,6 +25,7 @@ import * as firebase from 'firebase/app';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {LineChartModule, NgxChartsModule} from '@swimlane/ngx-charts';
 import {RoundPipe} from './round.pipe';
+import { WidgetComponent } from './battery/widget/widget.component';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
 
@@ -36,7 +37,8 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         WeatherComponent,
         SecurityComponent,
         LoginComponent,
-        RoundPipe
+        RoundPipe,
+        WidgetComponent
     ],
     imports: [
         AppRoutingModule,
