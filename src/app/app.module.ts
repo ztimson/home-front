@@ -25,20 +25,22 @@ import * as firebase from 'firebase/app';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {LineChartModule, NgxChartsModule} from '@swimlane/ngx-charts';
 import {RoundPipe} from './round.pipe';
-import { WidgetComponent } from './battery/widget/widget.component';
+import {BatteryWidgetComponent} from './battery/widget/batteryWidget.component';
+import {WeatherWidgetComponent} from './weather/widget/weatherWidget.component';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
 
 @NgModule({
     declarations: [
         AppComponent,
+        BatteryWidgetComponent,
         DashboardComponent,
         BatteryComponent,
         WeatherComponent,
         SecurityComponent,
         LoginComponent,
         RoundPipe,
-        WidgetComponent
+        WeatherWidgetComponent
     ],
     imports: [
         AppRoutingModule,

@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {AppComponent} from '../app.component';
+import {Component} from '@angular/core';
+import {timer} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html'
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html'
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
+    now = timer(0, 1000).pipe(map(() => new Date()));
 
-  constructor(private app: AppComponent) { }
-
-  ngOnInit() {
-  }
-
+    constructor() { }
 }
