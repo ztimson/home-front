@@ -5,7 +5,7 @@
                 <h1 class="mb-0">{{formatDate(now | async)}}</h1>
             </div>
             <div class="pl-2">
-                <h1 class="mb-0">{{formatTime(now | async)}}</h1>
+                <h1 class="mb-0">{{now | async | date: 'shortTime'}}</h1>
             </div>
         </div>
         <mat-card class="mt-3 w-100 hover" routerLink="/battery">
