@@ -1,4 +1,4 @@
-<div class="w-100 h-100">
+<div *ngIf="weatherService.weather.length" class="w-100 h-100">
     <h3 class="text-center">{{weatherService.weather[0].phrase}}</h3>
     <div class="d-flex align-items-center">
         <div><i [class]="'mt-4 wi wi-fw ' + weatherService.icon" style="font-size: 6rem"></i></div>
@@ -24,4 +24,7 @@
             </div>
         </div>
     </div>
+</div>
+<div>
+    <h3 class="text-danger">No Weather Data (API Limit Reached)</h3>
 </div>
