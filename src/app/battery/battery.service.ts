@@ -10,7 +10,7 @@ export class BatteryService {
     batteries = [];
     charge: number;
     lastCharge: number;
-    relayMode?: boolean = null;
+    relayMode: string = 'null';
     temp: number = 0;
 
     get charging() { return this.lastCharge < this.charge; }
@@ -47,10 +47,7 @@ export class BatteryService {
         this.firestore.settings({timestampsInSnapshots: true});
         this.firestore.collection('Battery').doc('170614D').onSnapshot(snap => {
             let data = snap.data();
-
-            this.relayMode = data.config.relayMode || null
-            ;
-
+            this.relayMode = data.config.relayMode ? data.config.relayMode.toString() : 'null';
             this.batteries = Object.keys(data.modules).map(key => {
                 let last = data.modules[key].length - 1;
                 return {
@@ -67,7 +64,9 @@ export class BatteryService {
         });
     }
 
-    setRelayMode(mode?:boolean) {
-        this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: mode}});
+    setRelayMode(mode?: string) {
+        if(mode == 'null') this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: null}});
+        else if(mode == 'true') this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: true}});
+        else if(mode == 'false') this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: false}});
     }
 }
