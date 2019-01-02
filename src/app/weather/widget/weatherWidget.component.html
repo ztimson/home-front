@@ -1,9 +1,6 @@
 <div class="w-100 h-100">
+    <h3 class="mb-0 text-center">{{weatherService.weather?.currently.summary}}</h3>
     <div class="d-flex align-items-center">
-        <div>
-            <h3 class="mb-0">London, ON</h3>
-            <h3 class="mb-0">{{weatherService.weather?.currently.summary}}</h3>
-        </div>
         <div><i [class]="'mt-4 wi wi-fw ' + weatherService.icon" style="font-size: 6rem"></i></div>
         <div>
             <div>
