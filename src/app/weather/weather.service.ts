@@ -24,7 +24,7 @@ export class WeatherService {
     }
 
     async search(text: string) {
-        this.locationKey = (await this.http.get(`http://dataservice.accuweather.com/locations/v1/search?apikey=${environment.accuWeather}&q=${text}`).toPromise())[0].Key;
+        this.locationKey = (await this.http.get(`https://dataservice.accuweather.com/locations/v1/search?apikey=${environment.accuWeather}&q=${text}`).toPromise())[0].Key;
         this.update();
     }
 
@@ -35,7 +35,7 @@ export class WeatherService {
         }
 
         this.sub = timer(0, 60000).subscribe(async () => {
-            let temp: any = await this.http.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.locationKey}?apikey=${environment.accuWeather}&metric=${this.metric}&details=true`).toPromise();
+            let temp: any = await this.http.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.locationKey}?apikey=${environment.accuWeather}&metric=${this.metric}&details=true`).toPromise();
             this.weather = temp['DailyForecasts'].map(forecast => ({
                 cloudCover: forecast.Day.CloudCover / 100,
                 date: new Date(forecast.Date),
@@ -47,7 +47,7 @@ export class WeatherService {
                 sunrise: new Date(forecast.Sun.Rise),
                 sunset: new Date(forecast.Sun.Set),
             }));
-            temp = (await this.http.get(`http://dataservice.accuweather.com/currentconditions/v1/${this.locationKey}?apikey=${environment.accuWeather}&details=true`).toPromise())[0];
+            temp = (await this.http.get(`https://dataservice.accuweather.com/currentconditions/v1/${this.locationKey}?apikey=${environment.accuWeather}&details=true`).toPromise())[0];
             Object.assign(this.weather[0], {
                 cloudCover: temp.CloudCover / 100,
                 current: temp.Temperature[this.metric ? 'Metric' : 'Imperial'].Value,
