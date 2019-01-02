@@ -10,15 +10,13 @@
     <mat-drawer class="bg-primary" [mode]="mobile ? 'push' : 'side'" [opened]="open" [disableClose]="!mobile" [autoFocus]="false">
         <mat-nav-list class="p-0">
             <mat-divider></mat-divider>
-            <a mat-list-item routerLink="dashboard" routerLinkActive="active"><span class="p-3 pl-0 mr-5"><mat-icon class="mr-2">insert_chart</mat-icon> Dashboard</span></a>
+            <a mat-list-item routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><span class="p-3 pl-0 mr-5"><mat-icon class="mr-2">insert_chart</mat-icon> Dashboard</span></a>
             <mat-divider></mat-divider>
             <a mat-list-item routerLink="battery" routerLinkActive="active"><span class="p-3 pl-0 mr-5"><mat-icon class="mr-2">{{batteryService.icon}}</mat-icon> Powerwall</span></a>
             <mat-divider></mat-divider>
             <a mat-list-item routerLink="weather" routerLinkActive="active"><span class="p-3 pl-0 mr-5"><i [class]="'mr-2 scale-150 wi wi-fw ' + weatherService.icon"></i> Weather</span></a>
             <mat-divider></mat-divider>
             <a mat-list-item routerLink="security" routerLinkActive="active"><span class="p-3 pl-0 mr-5"><mat-icon class="mr-2">security</mat-icon> Security</span></a>
-            <mat-divider></mat-divider>
-            <a mat-list-item routerLink="settings" routerLinkActive="active"><span class="p-3 pl-0 mr-5"><mat-icon class="mr-2">settings</mat-icon> Settings</span></a>
             <mat-divider></mat-divider>
             <a mat-list-item (click)="logout()"><span class="p-3 pl-0 mr-5" style="color: darkred"><mat-icon class="mr-2">logout</mat-icon> Logout</span></a>
             <mat-divider></mat-divider>

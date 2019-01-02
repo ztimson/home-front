@@ -14,18 +14,17 @@ import {
     MatSidenavModule,
     MatToolbarModule
 } from '@angular/material';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { BatteryComponent } from './battery/battery.component';
-import { WeatherComponent } from './weather/weather.component';
-import { SecurityComponent } from './security/security.component';
-import { SettingsComponent } from './settings/settings.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {BatteryComponent} from './battery/battery.component';
+import {WeatherComponent} from './weather/weather.component';
+import {SecurityComponent} from './security/security.component';
 import {HttpClientModule} from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
+import {LoginComponent} from './login/login.component';
 import {environment} from '../environments/environment';
 import * as firebase from 'firebase/app';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import {ServiceWorkerModule} from '@angular/service-worker';
 import {LineChartModule, NgxChartsModule} from '@swimlane/ngx-charts';
-import { RoundPipe } from './round.pipe';
+import {RoundPipe} from './round.pipe';
 
 export const firebaseApp = firebase.initializeApp(environment.firebase);
 
@@ -36,7 +35,6 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         BatteryComponent,
         WeatherComponent,
         SecurityComponent,
-        SettingsComponent,
         LoginComponent,
         RoundPipe
     ],
@@ -59,7 +57,7 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         MatSidenavModule,
         MatToolbarModule,
         NgxChartsModule,
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: false }),
+        ServiceWorkerModule.register('ngsw-worker.js', {enabled: false}),
     ],
     providers: [],
     bootstrap: [AppComponent]
