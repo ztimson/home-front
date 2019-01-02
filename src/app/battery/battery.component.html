@@ -1,4 +1,4 @@
-<div class="desktop-height p-3" style="background-color: #b52e3c !important;">
+<div class="fill-height p-3" style="background-color: #b52e3c !important;">
     <div style="max-width: 1000px;">
         <h1 class="text-white">Powerwall: {{batteryService.charge | round}} V</h1>
         <mat-button-toggle-group [ngModel]="batteryService.relayMode" (change)="batteryService.setRelayMode($event.value)"><!---->

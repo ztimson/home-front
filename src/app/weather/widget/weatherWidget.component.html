@@ -1,26 +1,26 @@
 <div class="w-100 h-100">
-    <h3 class="mb-0 text-center">{{weatherService.weather?.currently.summary}}</h3>
+    <h3 class="text-center">{{weatherService.weather[0].phrase}}</h3>
     <div class="d-flex align-items-center">
         <div><i [class]="'mt-4 wi wi-fw ' + weatherService.icon" style="font-size: 6rem"></i></div>
         <div>
             <div>
-                <h1 class="mb-0">{{weatherService.weather?.currently.temperature | round: 1}} °C</h1>
+                <h1 class="mb-0">{{weatherService.weather[0].current | round: 1}} °C</h1>
             </div>
             <div>
-                Feels Like: {{weatherService.weather?.currently.apparentTemperature | round}} °C
+                Feels Like: {{weatherService.weather[0].feelsLike | round}} °C
             </div>
         </div>
         <div class="pl-3">
             <div>
                 <mat-icon style="font-size: 18px; width: 18px; height: 18px">arrow_upward</mat-icon>
-                {{weatherService.weather?.daily.data[0].temperatureHigh | round}} °C
+                {{weatherService.weather[0].high | round}} °C
             </div>
             <div>
                 <mat-icon style="font-size: 18px; width: 18px; height: 18px">arrow_downward</mat-icon>
-                {{weatherService.weather?.daily.data[0].temperatureLow | round}} °C
+                {{weatherService.weather[0].low | round}} °C
             </div>
             <div>
-                <i class="wi wi-fw wi-umbrella"></i> {{weatherService.weather?.daily.data[0].precipProbability * 100 | round}}%
+                <i class="wi wi-fw wi-umbrella"></i> {{weatherService.weather[0].pop * 100 | round}}%
             </div>
         </div>
     </div>

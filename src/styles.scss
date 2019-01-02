@@ -52,7 +52,7 @@ html, body {
     cursor: pointer;
 }
 
-.desktop-height {
+.fill-height {
     height: calc(100vh - 64px);
 }
 
@@ -122,10 +122,6 @@ html, body {
     vertical-align: middle;
 }
 
-.mobile-height{
-    height: calc(100vh - 56px);
-}
-
 .off-center {
     position: fixed;
     left: calc(50% - 75px);
@@ -153,7 +149,7 @@ html, body {
 }
 
 @media (max-width: 599px) {
-    .desktop-height {
+    .fill-height {
         height: calc(100vh - 56px);
     }
 }

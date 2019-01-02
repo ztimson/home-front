@@ -13,10 +13,10 @@ export class WeatherComponent implements OnInit {
     constructor(public weatherService: WeatherService) { }
 
     ngOnInit() {
-        timer(0, 1000).pipe(filter(() => this.weatherService.weather)).subscribe(() => {
+        timer(0, 1000).pipe(filter(() => !!this.weatherService.weather[0])).subscribe(() => {
             const now = new Date().getTime();
-            const sunrise = this.weatherService.weather.daily.data[0].sunriseTime.getTime();
-            const sunset = this.weatherService.weather.daily.data[0].sunsetTime.getTime();
+            const sunrise = this.weatherService.weather[0].sunrise.getTime();
+            const sunset = this.weatherService.weather[0].sunset.getTime();
 
             this.day = now > sunrise && now < sunset;
             let diff = sunset - sunrise;

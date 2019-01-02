@@ -1,4 +1,5 @@
 export const environment = {
+    accuWeather: 'DktD9hoGvnnylAWDA3p1lVvqPXOAuRZD',
     firebase: {
         apiKey: "AIzaSyAs3FvBCADM66wR1-leBz6aIjK1wZfUxRo",
         authDomain: "homefront-2ccb4.firebaseapp.com",
