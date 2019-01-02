@@ -8,9 +8,10 @@ export class BatteryService {
     readonly firestore;
 
     batteries = [];
+    charge: number = 0;
     last: Date;
     relayMode?: boolean = null;
-    total: number = 0;
+    temp: number = 0;
 
     get icon() {
         if (!this.batteries.length) return 'battery_alert';
@@ -61,7 +62,8 @@ export class BatteryService {
                     tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
                 }
             });
-            this.total = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
+            this.charge = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
+            this.temp = this.batteries.reduce((acc, battery) => acc + battery.temp, 0) / 4;
         });
     }
 
