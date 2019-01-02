@@ -12,7 +12,7 @@ export class BatteryComponent implements OnInit {
         name: 'cool',
         selectable: true,
         group: 'Ordinal',
-        domain: ['#a8385d', '#7aa3e5', '#a27ea8', '#aae3f5', '#adcded', '#a95963', '#8796c0', '#7ed3ed', '#50abcc', '#ad6886']
+        domain: ['#2830a8']
     };
     selected;
 
