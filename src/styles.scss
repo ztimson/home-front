@@ -19,7 +19,6 @@
     background-color: #555;
 }
 
-
 html, body {
     padding: 0;
     margin: 0;
@@ -30,12 +29,12 @@ html, body {
     background-color: #2F323A;
 }
 
-.mobile-height{
-    height: calc(100vh - 56px);
+.bg-primary {
+    background-color: #f8f8f8 !important;
 }
 
-.desktop-height{
-    height: calc(100vh - 64px);
+.bg-secondary {
+    background-color: #2F323A !important;
 }
 
 .center {
@@ -45,67 +44,25 @@ html, body {
     transform: translate(-50%, -50%);
 }
 
-.off-center {
-    position: fixed;
-    left: calc(50% - 75px);
-    top: 75%;
+.curs-pointer {
+    cursor: pointer;
 }
 
-.mat-list-item {
-    height: auto !important;
-    color: #9CA4B6 !important;
-
-    &.active {
-        background-color: #262930 !important;
-        color: #1CA8DD !important;
-    }
+.desktop-height{
+    height: calc(100vh - 64px);
 }
 
-.text-muted {
-    color: #7f7f7f !important;
+.hover:hover {
+    cursor: pointer;
+    background-color: #dddddd !important;
 }
 
-.mat-divider {
-    color: #9CA4B6 !important;
+.flex-basis-0 {
+    flex-basis: 0;
 }
 
-.bg-primary {
-    background-color: #f8f8f8 !important;
-}
-
-.bg-secondary {
-    background-color: #2F323A !important;
-}
-
-.scale-150 {
-    transform: scale(1.5);
-}
-
-.scale-200 {
-    transform: scale(2);
-}
-
-.scale-300 {
-    transform: scale(3);
-}
-
-.scale-500 {
-    transform: scale(5);
-}
-
-.material-icons {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
-}
-
-.mat-stroked-button:not([disabled]) {
-    border-color: #ffffff !important;
-}
-
-.mat-form-field label {
-    color: #ffffff !important;
+.flex-basis-auto {
+    flex-basis: auto;
 }
 
 .flex-grow-0 {
@@ -132,10 +89,61 @@ html, body {
     flex-shrink: 1;
 }
 
-.flex-basis-0 {
-    flex-basis: 0;
+.mat-divider {
+    color: #9CA4B6 !important;
 }
 
-.flex-basis-auto {
-    flex-basis: auto;
+.mat-form-field label {
+    color: #ffffff !important;
+}
+
+.mat-list-item {
+    height: auto !important;
+    color: #9CA4B6 !important;
+
+    &.active {
+        background-color: #262930 !important;
+        color: #1CA8DD !important;
+    }
+}
+
+.mat-stroked-button:not([disabled]) {
+    border-color: #ffffff !important;
+}
+
+.material-icons {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+.mobile-height{
+    height: calc(100vh - 56px);
+}
+
+.off-center {
+    position: fixed;
+    left: calc(50% - 75px);
+    top: 75%;
+}
+
+.scale-150 {
+    transform: scale(1.5);
+}
+
+.scale-200 {
+    transform: scale(2);
+}
+
+.scale-300 {
+    transform: scale(3);
+}
+
+.scale-500 {
+    transform: scale(5);
+}
+
+.text-muted {
+    color: #7f7f7f !important;
 }
