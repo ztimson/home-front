@@ -12,7 +12,7 @@ export class WeatherService {
     locationKey: string;
     metric = true;
     sub: Subscription;
-    weather: Weather[];
+    weather: Weather[] = [];
 
     get icon() {
         if(!this.weather.length) return '';
