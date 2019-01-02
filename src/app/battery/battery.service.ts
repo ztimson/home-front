@@ -8,14 +8,15 @@ export class BatteryService {
     readonly firestore;
 
     batteries = [];
-    charge: number = 0;
-    last: Date;
+    charge: number;
+    lastCharge: number;
     relayMode?: boolean = null;
     temp: number = 0;
 
+    get charging() { return this.lastCharge < this.charge; }
+
     get icon() {
         if (!this.batteries.length) return 'battery_alert';
-        if (!this.last) return 'battery_warn';
 
         return 'battery_full';
 
@@ -45,7 +46,6 @@ export class BatteryService {
         this.firestore = firebaseApp.firestore();
         this.firestore.settings({timestampsInSnapshots: true});
         this.firestore.collection('Battery').doc('170614D').onSnapshot(snap => {
-            this.last = new Date();
             let data = snap.data();
 
             this.relayMode = data.config.relayMode || null
@@ -56,12 +56,12 @@ export class BatteryService {
                 return {
                     charge: data.modules[key][last].charge,
                     chargeHistory: data.modules[key].map((val, i) => ({name: i, value: val.charge})),
-                    charging: data.modules[key][last] > data.modules[key][last - 1],
                     name: key,
                     temp: data.modules[key][last].temp,
                     tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
                 }
             });
+            this.lastCharge = this.charge;
             this.charge = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
             this.temp = this.batteries.reduce((acc, battery) => acc + battery.temp, 0) / 4;
         });
