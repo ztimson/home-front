@@ -25,6 +25,6 @@
         </div>
     </div>
 </div>
-<div>
+<div *ngIf="!weatherService.weather.length">
     <h3 class="text-danger">No Weather Data (API Limit Reached)</h3>
 </div>
