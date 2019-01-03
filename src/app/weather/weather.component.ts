@@ -61,6 +61,7 @@ export class WeatherComponent implements OnInit {
             if(this.day) {
                 // Stroke background
                 ctx.lineWidth = 2;
+                ctx.strokeStyle = '#e5df00';
                 ctx.fillStyle = '#b3ad00';
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, radius, Math.PI, Math.PI * (1 + progress));
