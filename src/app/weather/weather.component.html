@@ -37,7 +37,7 @@
     <!-- Forecast -->
     <mat-card class="m-3 mx-auto" style="max-width: 450px">
         <div class="d-flex justify-content-center">
-            <div *ngFor="let day of weatherService.weather.slice(1, 5)" class="d-flex flex-column align-items-center flex-grow-1" style="max-width: 75px;">
+            <div *ngFor="let day of weatherService.weather" class="d-flex flex-column align-items-center flex-grow-1" style="max-width: 75px;">
                 {{day.date.toString().slice(0, 4).toUpperCase()}}
                 <i [class]="'my-2 wi wi-fw ' + day.icon" style="font-size: 2rem"></i>
                 <div class="text-center">{{day.high | round}} °C</div>
