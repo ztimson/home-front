@@ -34,7 +34,7 @@ export class WeatherService {
             this.sub = null;
         }
 
-        this.sub = timer(0, 60000).subscribe(async () => {
+        this.sub = timer(0, 1800000).subscribe(async () => {
             let temp: any = await this.http.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${this.locationKey}?apikey=${environment.accuWeather}&metric=${this.metric}&details=true`).toPromise();
             this.weather = temp['DailyForecasts'].map(forecast => ({
                 cloudCover: forecast.Day.CloudCover / 100,
