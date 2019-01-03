@@ -8,6 +8,7 @@ import {AppComponent} from '../app.component';
 })
 export class BatteryComponent implements OnInit {
 
+    locked = true;
     scheme = {
         name: 'cool',
         selectable: true,
