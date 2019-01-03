@@ -1,7 +1,8 @@
 <div class="fill-height p-3" style="background-color: #b52e3c !important;">
     <div style="max-width: 1000px;">
         <h1 class="text-white">Powerwall: {{batteryService.charge | round}} V</h1>
-        <mat-button-toggle-group [ngModel]="batteryService.relayMode" (change)="batteryService.setRelayMode($event.value)"><!---->
+        <h4 class="text-white mt-3 mb-0">Fan</h4>
+        <mat-button-toggle-group class="mb-3" [ngModel]="batteryService.relayMode" (change)="batteryService.setRelayMode($event.value)">
             <mat-button-toggle value="null">Auto</mat-button-toggle>
             <mat-button-toggle value="true">On</mat-button-toggle>
             <mat-button-toggle value="false">Off</mat-button-toggle>
