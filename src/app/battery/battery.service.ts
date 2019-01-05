@@ -21,10 +21,10 @@ export class BatteryService {
 
         return 'battery_full';
 
-        let temp = 'battery';
-        // if (this.batteries.length) temp += '_charging';
+        /*let temp = 'battery';
+        if (this.batteries.length) temp += '_charging';
 
-        /*if (this.average <= 20) {
+        if (this.average <= 20) {
             temp += '_20';
         } else if (this.average <= 30) {
             temp += '_30';
@@ -38,9 +38,9 @@ export class BatteryService {
             temp += '_90';
         } else if (this.average > 90) {
             temp += 'full'
-        }*/
+        }
 
-        return temp;
+        return temp;*/
     }
 
     constructor() {
