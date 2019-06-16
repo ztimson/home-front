@@ -1,6 +1,6 @@
 <div class="fill-height p-3" style="background-color: #b52e3c !important;">
     <div style="max-width: 1000px;">
-        <h1>Powerwall: {{batteryService.charge | round}} V</h1>
+        <h1>Powerwall: {{batteryService.charge | number : '1.1-1'}} V</h1>
         <div class="d-flex align-content-center">
             <div *ngIf="locked" class="mr-1">
                 <mat-icon>lock</mat-icon>
@@ -19,15 +19,10 @@
                     <h5 class="mb-0">{{battery.name}}</h5>
                 </div>
                 <div class="d-flex flex-grow-1 align-items-center justify-content-center">
-                    <button mat-button (click)="selected = i"
-                            [ngClass]="{'text-success': batteryService.charging, 'text-danger': !batteryService.charging}">{{battery.charge | round: 1}}
-                        V
-                    </button>
+                    <button mat-button (click)="selected = i" [ngClass]="{'text-success': batteryService.charging, 'text-danger': !batteryService.charging}">{{battery.charge | number : '1.1-1'}} V</button>
                 </div>
                 <div class="d-flex flex-grow-1 align-items-center justify-content-end text-muted">
-                    <button mat-button (click)="selected = batteryService.batteries.length + i">{{battery.temp | round}}
-                        °C
-                    </button>
+                    <button mat-button (click)="selected = batteryService.batteries.length + i">{{battery.temp | number : '1.1-1'}} °C</button>
                 </div>
             </div>
             <div *ngIf="selected == i" class="w-100" style="height: 200px">
