@@ -54,7 +54,7 @@ export class BatteryService {
                     chargeHistory: data.modules[key].map((val, i) => ({name: val.timestamp.toDate(), value: val.charge})),
                     name: key,
                     temp: data.modules[key][last].temp,
-                    tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
+                    tempHistory: data.modules[key].map((val, i) => ({name: val.timestamp.toDate(), value: val.temp}))
                 }
             });
             this.lastCharge = this.charge;
