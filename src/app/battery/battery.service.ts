@@ -7,12 +7,12 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class BatteryService {
     batteries = [];
     charge: number;
-    lastCharge: number;
+    lastCharge: number[] = [];
     lastUpdate = new Date().getTime();
     relayMode: string = 'null';
     temp: number = 0;
 
-    get charging() { return this.lastCharge < this.charge; }
+    get charging() { return this.lastCharge.reduce((acc, v) => acc + v, 0) / this.lastCharge.length < this.charge; }
 
     get icon() {
         if (new Date().getTime() - this.lastUpdate > 120000) return 'battery_alert';
@@ -48,16 +48,18 @@ export class BatteryService {
             this.relayMode = data.config.relayMode ? data.config.relayMode.toString() : 'null';
             this.batteries = Object.keys(data.modules).map(key => {
                 let last = data.modules[key].length - 1;
-                console.log(data.modules[key][last]);
                 return {
                     charge: data.modules[key][last].charge,
-                    chargeHistory: data.modules[key].map((val, i) => ({name: val.timestamp.toDate(), value: val.charge})),
+                    chargeHistory: data.modules[key].map(val => ({name: val.timestamp.toDate(), value: val.charge})),
+                    lastUpdate: data.modules[key][last].timestamp.toDate(),
                     name: key,
                     temp: data.modules[key][last].temp,
-                    tempHistory: data.modules[key].map((val, i) => ({name: val.timestamp.toDate(), value: val.temp}))
+                    tempHistory: data.modules[key].map(val => ({name: val.timestamp.toDate(), value: val.temp}))
                 }
             });
-            this.lastCharge = this.charge;
+            this.lastCharge.push(this.charge);
+            this.lastCharge.splice(0, this.lastCharge.length - 5);
+            this.lastUpdate = this.batteries.reduce((acc, battery) => acc > battery.lastUpdate ? acc : battery.lastUpdate, 0);
             this.charge = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
             this.temp = this.batteries.reduce((acc, battery) => acc + battery.temp, 0) / 4;
         });
