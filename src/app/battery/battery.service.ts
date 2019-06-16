@@ -48,9 +48,10 @@ export class BatteryService {
             this.relayMode = data.config.relayMode ? data.config.relayMode.toString() : 'null';
             this.batteries = Object.keys(data.modules).map(key => {
                 let last = data.modules[key].length - 1;
+                console.log(data.modules[key][last]);
                 return {
                     charge: data.modules[key][last].charge,
-                    chargeHistory: data.modules[key].map((val, i) => ({name: i, value: val.charge})),
+                    chargeHistory: data.modules[key].map((val, i) => ({name: val.timestamp.toDate(), value: val.charge})),
                     name: key,
                     temp: data.modules[key][last].temp,
                     tempHistory: data.modules[key].map((val, i) => ({name: i, value: val.temp}))
