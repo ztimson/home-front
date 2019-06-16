@@ -6,7 +6,7 @@ import {collapseUp, expandDown, routerTransition} from './animations';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {filter} from 'rxjs/operators';
 import {WeatherService} from './weather/weather.service';
-import {firebaseApp} from './app.module';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
     selector: 'app-root',
@@ -20,7 +20,7 @@ export class AppComponent {
     open = false; // Side nav open
     environment = environment; // Environment ref
 
-    constructor(private router: Router, public batteryService: BatteryService, public weatherService: WeatherService, route: ActivatedRoute, breakpointObserver: BreakpointObserver) {
+    constructor(private auth: AngularFireAuth, private router: Router, public batteryService: BatteryService, public weatherService: WeatherService, route: ActivatedRoute, breakpointObserver: BreakpointObserver) {
         router.events.pipe(filter(event => event instanceof NavigationEnd)).subscribe(() => {
             this.hide = !!route.root.firstChild.snapshot.data.hide;
             this.open = !this.hide && !this.mobile;
@@ -34,7 +34,7 @@ export class AppComponent {
 
     async logout() {
         this.noTransition = true;
-        await firebaseApp.auth().signOut();
+        await this.auth.auth.signOut();
         return this.router.navigate(['/login']).then(() => this.noTransition = false);
     }
 

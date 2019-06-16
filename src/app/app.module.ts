@@ -20,15 +20,15 @@ import {WeatherComponent} from './weather/weather.component';
 import {SecurityComponent} from './security/security.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
-import {environment} from '../environments/environment';
-import * as firebase from 'firebase/app';
 import {ServiceWorkerModule} from '@angular/service-worker';
 import {LineChartModule, NgxChartsModule} from '@swimlane/ngx-charts';
 import {RoundPipe} from './round.pipe';
 import {BatteryWidgetComponent} from './battery/widget/batteryWidget.component';
 import {WeatherWidgetComponent} from './weather/widget/weatherWidget.component';
-
-export const firebaseApp = firebase.initializeApp(environment.firebase);
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 @NgModule({
     declarations: [
@@ -43,6 +43,9 @@ export const firebaseApp = firebase.initializeApp(environment.firebase);
         WeatherWidgetComponent
     ],
     imports: [
+        AngularFireAuthModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule.enablePersistence(),
         AppRoutingModule,
         BrowserModule,
         BrowserAnimationsModule,

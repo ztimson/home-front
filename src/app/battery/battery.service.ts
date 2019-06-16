@@ -1,12 +1,10 @@
 import {Injectable} from '@angular/core';
-import {firebaseApp} from '../app.module';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BatteryService {
-    readonly firestore;
-
     batteries = [];
     charge: number;
     lastCharge: number;
@@ -43,12 +41,10 @@ export class BatteryService {
         return temp;*/
     }
 
-    constructor() {
-        this.firestore = firebaseApp.firestore();
-        this.firestore.settings({timestampsInSnapshots: true});
-        this.firestore.collection('Battery').doc('170614D').onSnapshot(snap => {
+    constructor(private firestore: AngularFirestore) {
+        this.firestore.collection('Battery').doc('170614D').snapshotChanges().subscribe(snap => {
             this.lastUpdate = new Date().getTime();
-            let data = snap.data();
+            let data: any = snap.payload.data();
             this.relayMode = data.config.relayMode ? data.config.relayMode.toString() : 'null';
             this.batteries = Object.keys(data.modules).map(key => {
                 let last = data.modules[key].length - 1;

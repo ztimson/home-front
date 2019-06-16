@@ -1,8 +1,8 @@
 import {Component, NgZone, OnInit} from '@angular/core';
-import {firebaseApp} from '../app.module';
 import {Router} from '@angular/router';
 import * as firebase from 'firebase';
 import {expandDown, fadeIn, fadeOut} from '../animations';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
     selector: 'app-login',
@@ -14,10 +14,10 @@ export class LoginComponent implements OnInit {
     show = true;
     loading = false;
 
-    constructor(private ngZone: NgZone, public router: Router) { }
+    constructor(private auth: AngularFireAuth, private ngZone: NgZone, public router: Router) { }
 
     ngOnInit() {
-        firebaseApp.auth().onAuthStateChanged(user => {
+        this.auth.auth.onAuthStateChanged(user => {
             if(!!user) {
                 this.show = false;
                 setTimeout(() => {
@@ -31,8 +31,7 @@ export class LoginComponent implements OnInit {
 
     async login() {
         this.loading = true;
-        await firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-        await firebaseApp.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        await this.auth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
         this.loading = false;
     }
 }

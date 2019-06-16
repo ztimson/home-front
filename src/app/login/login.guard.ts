@@ -1,8 +1,8 @@
 import {CanActivate, Router} from '@angular/router';
-import {firebaseApp} from '../app.module';
 import {Injectable} from '@angular/core';
 import {Observable, timer} from 'rxjs';
 import {filter, map} from 'rxjs/operators';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +10,8 @@ import {filter, map} from 'rxjs/operators';
 export class LoginGuard implements CanActivate {
     loggedIn?;
 
-    constructor(private router: Router) {
-        firebaseApp.auth().onAuthStateChanged(user => this.loggedIn = !!user);
+    constructor(private auth: AngularFireAuth, private router: Router) {
+        this.auth.auth.onAuthStateChanged(user => this.loggedIn = !!user);
     }
 
     canActivate(): Observable<boolean> {
