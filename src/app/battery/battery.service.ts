@@ -17,9 +17,7 @@ export class BatteryService {
     get icon() {
         if (new Date().getTime() - this.lastUpdate > 120000) return 'battery_alert';
 
-        return 'battery_full';
-
-        /*let temp = 'battery';
+        let temp = 'battery';
         if (this.batteries.length) temp += '_charging';
 
         if (this.average <= 20) {
@@ -38,7 +36,7 @@ export class BatteryService {
             temp += 'full'
         }
 
-        return temp;*/
+        return temp;
     }
 
     constructor(private firestore: AngularFirestore) {
@@ -69,28 +67,7 @@ export class BatteryService {
             this.lastUpdate = this.batteries[0].lastUpdate;
             this.charge = this.batteries.reduce((acc, module) => acc + module.charge, 0) / 2;
             this.temp = this.batteries.reduce((acc, module) => acc + module.temp, 0) / this.batteries.length;
-        })
-        // .snapshotChanges().subscribe(snap => {
-        //     this.lastUpdate = new Date().getTime();
-        //     let data: any = snap.payload.data();
-        //     this.relayMode = data.config.relayMode ? data.config.relayMode.toString() : 'null';
-        //     this.batteries = Object.keys(data.modules).map(key => {
-        //         let last = data.modules[key].length - 1;
-        //         return {
-        //             charge: data.modules[key][last].charge,
-        //             chargeHistory: data.modules[key].map(val => ({name: val.timestamp.toDate(), value: val.charge})),
-        //             lastUpdate: data.modules[key][last].timestamp.toDate(),
-        //             name: key,
-        //             temp: data.modules[key][last].temp,
-        //             tempHistory: data.modules[key].map(val => ({name: val.timestamp.toDate(), value: val.temp}))
-        //         }
-        //     });
-        //     this.lastCharge.push(this.charge);
-        //     this.lastCharge.splice(0, this.lastCharge.length - 5);
-        //     this.lastUpdate = this.batteries.reduce((acc, battery) => acc > battery.lastUpdate ? acc : battery.lastUpdate, 0);
-        //     this.charge = this.batteries.reduce((acc, battery) => acc + battery.charge, 0) / 2;
-        //     this.temp = this.batteries.reduce((acc, battery) => acc + battery.temp, 0) / 4;
-        // });
+        });
     }
 
     setRelayMode(mode?: string) {
