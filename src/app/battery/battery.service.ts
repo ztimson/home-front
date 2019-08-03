@@ -35,7 +35,7 @@ export class BatteryService {
                 const last = module[module.length - 1];
                 return {
                     charge: last.charge,
-                    chargeHistory: module.map(row => ({name: row.timestamp, value: row.temp})),
+                    chargeHistory: module.map(row => ({name: row.timestamp, value: row.charge})),
                     lastUpdate: last.timestamp,
                     name: `Module ${i + 1}`,
                     temp: last.temp,
