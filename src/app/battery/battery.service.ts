@@ -15,28 +15,9 @@ export class BatteryService {
     get charging() { return this.lastCharge.reduce((acc, v) => acc + v, 0) / this.lastCharge.length < this.charge; }
 
     get icon() {
-        if (new Date().getTime() - this.lastUpdate > 120000) return 'battery_alert';
-
-        let temp = 'battery';
-        if (this.batteries.length) temp += '_charging';
-
-        if (this.average <= 20) {
-            temp += '_20';
-        } else if (this.average <= 30) {
-            temp += '_30';
-        } else if (this.average <= 50) {
-            temp += '_50';
-        } else if (this.average <= 60) {
-            temp += '_60';
-        } else if (this.average <= 80) {
-            temp += '_80';
-        } else if (this.average <= 90) {
-            temp += '_90';
-        } else if (this.average > 90) {
-            temp += 'full'
-        }
-
-        return temp;
+        if(new Date().getTime() - this.lastUpdate > 300000) return 'battery_alert';
+        if(this.charging) return 'battery_charging_full';
+        return 'battery_full';
     }
 
     constructor(private firestore: AngularFirestore) {
