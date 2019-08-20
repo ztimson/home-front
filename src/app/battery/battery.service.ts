@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 
 @Injectable({
@@ -25,6 +25,16 @@ export class BatteryService {
         afterDate.setDate(afterDate.getDate() - 1);
 
         this.firestore.collection('Battery').doc('170614D').collection('data', ref => ref.where('timestamp', '>=', afterDate).orderBy('timestamp')).valueChanges().subscribe(data => {
+
+            // Remove corrupt data
+            /*if(isDevMode() && true) {
+                data.filter(row => row.payload.length > 4).forEach(row => {
+                    console.log(row);
+                    let timestamp = row.timestamp.seconds.toString() + row.timestamp.nanoseconds.toString().slice(0, 3);
+                    this.firestore.collection('Battery').doc('170614D').collection('data').doc(timestamp).delete();
+                });
+            }*/
+
             this.batteries = data.reduce((acc, row) => {
                 row.payload.forEach((data, i) => {
                     if(!acc[i]) acc[i] = [];
