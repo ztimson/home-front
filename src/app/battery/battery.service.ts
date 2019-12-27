@@ -1,18 +1,26 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {Battery} from './battery';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class BatteryService {
-    batteries = [];
     charge: number;
-    lastCharge: number[] = [];
+    data = new BehaviorSubject<Battery[]>([]);
     lastUpdate = new Date().getTime();
-    relayMode: string = 'null';
+    modules = [];
     temp: number = 0;
+    uptime: string;
 
-    get charging() { return this.lastCharge.reduce((acc, v) => acc + v, 0) / this.lastCharge.length < this.charge; }
+    get charging() {
+        let value = this.data.value;
+        if(!value.length) return null;
+        let last = value[value.length - 1];
+        let secondLast = value[value.length - 2];
+        return last.soc > secondLast.soc;
+    }
 
     get icon() {
         if(new Date().getTime() - this.lastUpdate > 300000) return 'battery_alert';
@@ -24,36 +32,21 @@ export class BatteryService {
         let afterDate = new Date();
         afterDate.setDate(afterDate.getDate() - 1);
 
-        this.firestore.collection('Battery').doc('170614D').collection('data', ref => ref.where('timestamp', '>=', afterDate).orderBy('timestamp')).valueChanges().subscribe(data => {
-            this.batteries = data.reduce((acc, row) => {
-                row.payload.forEach((data, i) => {
-                    if(!acc[i]) acc[i] = [];
-                    acc[i].push(Object.assign(data, {timestamp: row.timestamp.toDate()}));
+        this.firestore.collection('Battery').doc('170614D').collection<Battery>('data', ref => ref.where('timestamp', '>=', afterDate.getTime()).orderBy('timestamp')).valueChanges().subscribe(data => {
+            this.modules = data.reduce((acc: any, row) => {
+                Object.keys(row.modules).forEach(module => {
+                    if(!acc[module]) acc[module] = [];
+                    acc[module].push(Object.assign(row.modules[module], {timestamp: row.timestamp}));
                 });
                 return acc;
-            }, []).map((module, i) => {
-                const last = module[module.length - 1];
-                return {
-                    charge: last.charge,
-                    chargeHistory: module.map(row => ({name: row.timestamp, value: row.charge})),
-                    lastUpdate: last.timestamp,
-                    name: `Module ${i + 1}`,
-                    temp: last.temp,
-                    tempHistory: module.map(row => ({name: row.timestamp, value: row.temp}))
-                };
-            });
+            }, {});
 
-            this.lastCharge.push(this.charge);
-            this.lastCharge.splice(0, this.lastCharge.length - 3);
-            this.lastUpdate = this.batteries[0].lastUpdate;
-            this.charge = this.batteries.reduce((acc, module) => acc + module.charge, 0) / 2;
-            this.temp = this.batteries.reduce((acc, module) => acc + module.temp, 0) / this.batteries.length;
+            let last = data[data.length - 1];
+            this.lastUpdate = last.timestamp;
+            this.charge = last.voltage;
+            this.temp = last.temperature;
+            this.uptime = last.uptime;
+            this.data.next(data);
         });
-    }
-
-    setRelayMode(mode?: string) {
-        if(mode == 'null') this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: null}});
-        else if(mode == 'true') this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: true}});
-        else if(mode == 'false') this.firestore.collection('Battery').doc('170614D').update({config: {relayMode: false}});
     }
 }

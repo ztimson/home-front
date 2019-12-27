@@ -8,8 +8,7 @@ import {AppComponent} from '../app.component';
     styles: [`.selected { background-color: rgba(0, 0, 0, 0.1); }`]
 })
 export class BatteryComponent implements OnInit {
-
-    locked = true;
+    batteries = [];
     scheme = {
         name: 'cool',
         selectable: true,
@@ -18,7 +17,20 @@ export class BatteryComponent implements OnInit {
     };
     selected = 0;
 
-    constructor(public app: AppComponent, public batteryService: BatteryService) { }
+    constructor(public app: AppComponent, public batteryService: BatteryService) {
+        this.batteryService.data.subscribe((data) => {
+            console.log(data);
+            this.batteries = Object.keys(this.batteryService.modules).map(key => {
+                return {
+                    name: `Module ${key}`,
+                    chargeHistory: this.batteryService.modules[key].map(row => ({name: new Date(row.timestamp), value: row.voltage})),
+                    tempHistory: this.batteryService.modules[key].map(row => ({name: new Date(row.timestamp), value: row.temperature})),
+                    temperature: this.batteryService.modules[key][this.batteryService.modules[key].length - 1].temperature,
+                    voltage: this.batteryService.modules[key][this.batteryService.modules[key].length - 1].voltage
+                }
+            });
+        });
+    }
 
     ngOnInit() { }
 
