@@ -7,12 +7,9 @@ import {BehaviorSubject} from 'rxjs';
     providedIn: 'root'
 })
 export class BatteryService {
-    charge: number;
     data = new BehaviorSubject<Battery[]>([]);
-    lastUpdate = new Date().getTime();
+    last: Battery = <Battery>{};
     modules = [];
-    temp: number = 0;
-    uptime: string;
 
     get charging() {
         let value = this.data.value;
@@ -23,7 +20,7 @@ export class BatteryService {
     }
 
     get icon() {
-        if(new Date().getTime() - this.lastUpdate > 300000) return 'battery_alert';
+        if(!this.last || new Date().getTime() - this.last.timestamp > 300000) return 'battery_alert';
         if(this.charging) return 'battery_charging_full';
         return 'battery_full';
     }
@@ -41,11 +38,7 @@ export class BatteryService {
                 return acc;
             }, {});
 
-            let last = data[data.length - 1];
-            this.lastUpdate = last.timestamp;
-            this.charge = last.voltage;
-            this.temp = last.temperature;
-            this.uptime = last.uptime;
+            this.last = data[data.length - 1];
             this.data.next(data);
         });
     }

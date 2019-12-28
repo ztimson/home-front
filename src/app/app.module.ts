@@ -21,7 +21,6 @@ import {SecurityComponent} from './security/security.component';
 import {HttpClientModule} from '@angular/common/http';
 import {LoginComponent} from './login/login.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {LineChartModule, NgxChartsModule} from '@swimlane/ngx-charts';
 import {RoundPipe} from './round.pipe';
 import {BatteryWidgetComponent} from './battery/widget/batteryWidget.component';
 import {WeatherWidgetComponent} from './weather/widget/weatherWidget.component';
@@ -29,6 +28,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {GaugeModule} from 'angular-gauge';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
     declarations: [
@@ -49,9 +50,10 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
         AppRoutingModule,
         BrowserModule,
         BrowserAnimationsModule,
+        ChartsModule,
         FormsModule,
+        GaugeModule.forRoot(),
         HttpClientModule,
-        LineChartModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatCardModule,
@@ -63,7 +65,6 @@ import {AngularFirestoreModule} from '@angular/fire/firestore';
         MatProgressSpinnerModule,
         MatSidenavModule,
         MatToolbarModule,
-        NgxChartsModule,
         ServiceWorkerModule.register('ngsw-worker.js', {enabled: false}),
     ],
     providers: [],

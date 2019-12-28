@@ -1,6 +1,6 @@
 <div class="w-100 h-100">
     <div class="d-flex align-items-center">
         <mat-icon class="mr-3" style="font-size: 36px; height: 36px">{{batteryService.icon}}</mat-icon>
-        <h2 class="d-inline mb-0">Powerwall: <span [ngClass]="{'text-success': batteryService.charging, 'text-danger': !batteryService.charging}">{{batteryService.charge | round}} V</span></h2>
+        <h2 class="d-inline mb-0">Powerwall: <span [ngClass]="{'text-success': batteryService.charging, 'text-danger': !batteryService.charging}">{{batteryService.last.voltage | round}} V</span></h2>
     </div>
 </div>
