@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-        - image: circleci/node:10.4-browsers
+        - image: circleci/node:14.4-browsers
 
         working_directory: ~/repo
 
@@ -26,8 +26,8 @@ jobs:
 
             - run:
                   name: Build
-                  command: yarn build
+                  command: npm run build
 
             - run:
                   name: Deploy
-                  command: yarn deploy
+                  command: npm run deploy
