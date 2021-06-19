@@ -1,155 +1,158 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css?family=Archivo|Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Material+Icons');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.min.css');
 
 ::-webkit-scrollbar-track {
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
-    background-color: rgba(0, 0, 0, 0);
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: #555;
+  border-radius: 4px;
+  background-color: #555;
 }
 
 :focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 html, body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 
-    font-family: 'Archivo', sans-serif;
-    background-color: #2F323A;
+  font-family: 'Archivo', sans-serif;
+  background-color: #2F323A;
 }
 
 .bg-primary {
-    background-color: #f8f8f8 !important;
+  background-color: #f8f8f8 !important;
 }
 
 .bg-secondary {
-    background-color: #2F323A !important;
+  background-color: #2F323A !important;
 }
 
 .center {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .curs-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .fill-height {
-    height: calc(100vh - 64px);
+  height: calc(100vh - 64px);
 }
 
 .hover:hover {
-    cursor: pointer;
-    background-color: #dddddd !important;
+  cursor: pointer;
+  background-color: #dddddd !important;
 }
 
 .flex-basis-0 {
-    flex-basis: 0;
+  flex-basis: 0;
 }
 
 .flex-basis-auto {
-    flex-basis: auto;
+  flex-basis: auto;
 }
 
 .flex-grow-0 {
-    flex-grow: 0;
+  flex-grow: 0;
 }
 
 .flex-grow-1 {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 .flex-grow-2 {
-    flex-grow: 2;
+  flex-grow: 2;
 }
 
 .flex-grow-3 {
-    flex-grow: 3;
+  flex-grow: 3;
 }
 
 .flex-shrink-0 {
-    flex-shrink: 0;
+  flex-shrink: 0;
 }
 
 .flex-shrink-1 {
-    flex-shrink: 1;
+  flex-shrink: 1;
 }
 
 .mat-divider {
-    color: #9CA4B6 !important;
+  color: #9CA4B6 !important;
 }
 
 .mat-form-field label {
-    color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .mat-list-item {
-    height: auto !important;
-    color: #9CA4B6 !important;
+  height: auto !important;
+  color: #9CA4B6 !important;
 
-    &.active {
-        background-color: #262930 !important;
-        color: #1CA8DD !important;
-    }
+  &.active {
+    background-color: #262930 !important;
+    color: #1CA8DD !important;
+  }
 }
 
 .mat-stroked-button:not([disabled]) {
-    border-color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 .material-icons {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
 }
 
 .off-center {
-    position: fixed;
-    left: calc(50% - 75px);
-    top: 75%;
+  position: fixed;
+  left: calc(50% - 75px);
+  top: 75%;
 }
 
 .scale-150 {
-    transform: scale(1.5);
+  transform: scale(1.5);
 }
 
 .scale-200 {
-    transform: scale(2);
+  transform: scale(2);
 }
 
 .scale-300 {
-    transform: scale(3);
+  transform: scale(3);
 }
 
 .scale-500 {
-    transform: scale(5);
+  transform: scale(5);
 }
 
 .text-muted {
-    color: #7f7f7f !important;
+  color: #7f7f7f !important;
 }
 
 @media (max-width: 599px) {
-    .fill-height {
-        height: calc(100vh - 56px);
-    }
+  .fill-height {
+    height: calc(100vh - 56px);
+  }
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

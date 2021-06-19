@@ -1,0 +1,13 @@
+<div *ngIf="loading" [@fadeIn]="true" style="position: fixed; z-index: 1000; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.5);"></div>
+
+<div class="center" *ngIf="show" [@fadeOut]="true">
+    <div class="text-center">
+        <h1 class="d-inline text-white">Home Front</h1>
+    </div>
+    <div class="mt-5">
+        <img src="../../../assets/icon-inv.png" width="275px" height="auto">
+    </div>
+</div>
+<div class="off-center" *ngIf="show" [@fadeOut]="true" [@expandDown]="animate">
+    <button mat-stroked-button class="mt-5" style="width: 150px" (click)="login()" [disabled]="loading">Login With Google</button>
+</div>
