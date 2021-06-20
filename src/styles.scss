@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
 @import url('https://fonts.googleapis.com/css?family=Roboto|Material+Icons');
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons-wind.min.css');
 
@@ -29,7 +30,7 @@ html, body {
   height: 100%;
   width: 100%;
 
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Roboto', sans-serif;
   background-color: #2F323A;
 }
 
