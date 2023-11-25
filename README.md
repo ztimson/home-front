@@ -7,5 +7,5 @@ We accomplished the software side in 3 steps:
  - A raspberry pi to recieve the serial data and send it to the cloud DB (See the monitor.js file)
  - [A website to display the recorded data live](https://github.com/ztimson/HomeFront)
 
-![Power Wall](https://github.com/ztimson/HomeFront-Battery/blob/master/pictures/Resized_20181124_121520_5410.jpg?raw=true)
-![Power Wall](https://github.com/ztimson/HomeFront-Battery/blob/master/pictures/03e615d9-f1b3-4439-9341-185cd3c14f3f.jpg?raw=true)
+<img src="./pictures/Resized_20181124_121520_5410.jpg" width="45%" height="auto">
+<img src="./pictures/03e615d9-f1b3-4439-9341-185cd3c14f3f.jpg" width="45%" height="auto">
