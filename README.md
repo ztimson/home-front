@@ -1,27 +1,11 @@
-# Homefront
+# HomeFront-Battery
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
+After obtaining 4 Tesla battery modules from a model X, a client and I decided to build our own knock off Tesla power wall and hook it up to a solar array to create an offgrid system. Part of this project was to log the voltage, battery tempature and control a set of fans through a website so it could be controleld and monitored remotely.
 
-## Development server
+We accomplished the software side in 3 steps:
+ - An arduino to log the raw data from sensors and transmit them over the serial port (See the arduino.ini file)
+ - A raspberry pi to recieve the serial data and send it to the cloud DB (See the monitor.js file)
+ - [A website to display the recorded data live](https://github.com/ztimson/HomeFront)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Power Wall](https://github.com/ztimson/HomeFront-Battery/blob/master/pictures/Resized_20181124_121520_5410.jpg?raw=true)
+![Power Wall](https://github.com/ztimson/HomeFront-Battery/blob/master/pictures/03e615d9-f1b3-4439-9341-185cd3c14f3f.jpg?raw=true)
