@@ -4,7 +4,8 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
+//    "outDir": "./dist/out-tsc",
+    "outDir": "./out-tsc/app",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": false,
@@ -25,6 +26,13 @@
       "dom"
     ]
   },
+  "files": [
+    "src/main.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
