@@ -9,7 +9,7 @@
   ### HomeFront
 
   <!-- Description -->
-  Simple repository template
+  Offgrid Battery Monitor
 
   <!-- Repo badges -->
   [![Version](https://img.shields.io/badge/dynamic/json.svg?label=Version&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/home-front/tags&query=$[0].name)](https://git.zakscode.com/ztimson/home-front/tags)
