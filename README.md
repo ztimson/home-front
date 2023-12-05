@@ -3,7 +3,7 @@
   <br />
 
   <!-- Logo -->
-  <img src="./website/src/assets/icon.png" alt="Logo" width="200" height="200">
+  <img src="./website/src/assets/icon-inv.png" alt="Logo" width="200" height="200">
 
   <!-- Title -->
   ### HomeFront
