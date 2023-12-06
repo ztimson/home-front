@@ -1,0 +1,25 @@
+name: Build Website
+run-name: Build Website
+
+on:
+    push:
+        paths:
+            - '.github/workflows/battery.yaml'
+            - 'battery/**'
+
+jobs:
+    build:
+        name: Build NPM Project
+        runs-on: ubuntu-latest
+        container: node
+        steps:
+            - name: Clone Repository
+              uses: ztimson/actions/clone@develop
+
+            - name: Install Dependencies
+              run: npm i
+              working-directory: battery
+
+            - name: Build Project
+              run: npm run build
+              working-directory: battery
