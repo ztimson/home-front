@@ -12,9 +12,18 @@
   Offgrid Battery Monitor
 
   <!-- Repo badges -->
-  [![Version](https://img.shields.io/badge/dynamic/json.svg?label=Version&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/home-front/tags&query=$[0].name)](https://git.zakscode.com/ztimson/home-front/tags)
-  [![Pull Requests](https://img.shields.io/badge/dynamic/json.svg?label=Pull%20Requests&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/home-front&query=open_pr_counter)](https://git.zakscode.com/ztimson/home-front/pulls)
-  [![Issues](https://img.shields.io/badge/dynamic/json.svg?label=Issues&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/home-front&query=open_issues_count)](https://git.zakscode.com/ztimson/template/issues)
+  [![Version](https://img.shields.io/badge/dynamic/json.svg?label=Version&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/homefront/tags&query=$[0].name)](https://git.zakscode.com/ztimson/homefront/tags)
+  [![Pull Requests](https://img.shields.io/badge/dynamic/json.svg?label=Pull%20Requests&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/homefront&query=open_pr_counter)](https://git.zakscode.com/ztimson/homefront/pulls)
+  [![Issues](https://img.shields.io/badge/dynamic/json.svg?label=Issues&style=for-the-badge&url=https://git.zakscode.com/api/v1/repos/ztimson/homefront&query=open_issues_count)](https://git.zakscode.com/ztimson/homefront/issues)
+
+  <!-- Links -->
+
+  ---
+  <div>
+    <a href="https://git.zakscode.com/ztimson/homefront/releases" target="_blank">Release Notes</a>
+    • <a href="https://git.zakscode.com/ztimson/homefront/issues/new?template=.github%2fissue_template%2fbug.md" target="_blank">Report a Bug</a>
+    • <a href="https://git.zakscode.com/ztimson/homefront/issues/new?template=.github%2fissue_template%2fenhancement.md" target="_blank">Request a Feature</a>
+  </div>
 
   ---
 </div>
@@ -29,7 +38,7 @@
 
 ## About
 
-<img src="./pictures/Resized_20181124_121520_5410.jpg" width="40%" height="auto"> <img src="./pictures/03e615d9-f1b3-4439-9341-185cd3c14f3f.jpg" width="40%" height="auto">
+<img src="./pictures/Resized_20181124_121520_5410.jpg" width="20%" height="auto"> <img src="./pictures/03e615d9-f1b3-4439-9341-185cd3c14f3f.jpg" width="20%" height="auto">
 
 After obtaining 4 Tesla battery modules, I was contracted to build a device to record battery voltages & temperatures. This was accomplished using some custom circutry and
 an arduino. These input values were then read by a Raspberry Pi & published to a web UI for remote viewing.
